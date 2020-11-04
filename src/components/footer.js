@@ -1,21 +1,14 @@
-import React from "react"
-import styled from "styled-components"
-import { Container } from "./layoutComponents"
+import React from 'react'
+import styled from 'styled-components'
 
-const Footer = ({ className }) => (
-  <footer className={className}>
-    <Container>
-      © {new Date().getFullYear()}, Built with
-      {` `}
-      <a href="https://www.gatsbyjs.org">Gatsby</a>
-    </Container>
-  </footer>
-)
-
-const StyledFooter = styled(Footer)`
-  color: #fffaff;
+const StyledFooter = styled.footer`
+  color: #fff;
   background: var(--primary-color);
-  padding: 1rem 0;
+  padding: 1rem 1rem;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `
 
-export default StyledFooter
+export const Footer = ({ children }) => <StyledFooter>{children}</StyledFooter>
