@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AudioPlay } from '../AudioPlay/AudioPlay'
-import { LetraGrande } from '../LetraGrande'
+import { LetterAndAudio } from './LetterAndAudio'
+import { AudioPlayButton } from '../AudioPlayButton'
 import { Video } from '../Video'
 import { CheckFirstLetter } from '../CheckFirstLetter'
 import { Text } from './Text'
@@ -10,15 +10,11 @@ export const Elements = ({ elements }) => {
   return elements.map(({ type, letra, urlAudio, urlVideo, texto }) => {
     let element = null
     switch (type) {
-      case 'LetraComAudio':
-        element = (
-          <AudioPlay src={urlAudio}>
-            <LetraGrande>{letra}</LetraGrande>
-          </AudioPlay>
-        )
+      case 'LetterAndAudio':
+        element = <LetterAndAudio letter={letra} src={urlAudio} />
         break
       case 'Audio':
-        element = <AudioPlay src={urlAudio} />
+        element = <AudioPlayButton src={urlAudio} />
         break
       case 'Video':
         element = <Video src={urlVideo} />

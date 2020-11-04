@@ -1,7 +1,7 @@
 ---
 letra: 'A'
 elements:
-  - type: 'LetraComAudio'
+  - type: 'LetterAndAudio'
     letra: 'A'
     texto: 'Esta é a letra A'
     urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/Essa+aqui+e%CC%81+a+letra+a.ogg'

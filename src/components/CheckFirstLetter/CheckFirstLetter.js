@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// import { AudioPlayButton } from '../AudioPlay'
 
 export const CheckFirstLetter = ({ urlAudio }) => {
   return (
     <div>
-      --- --- check first letter--- ---
+      {/* <AudioPlay src="https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/Essa+aqui+e%CC%81+a+letra+a.ogg" /> */}
       <svg
         x="0px"
         y="0px"
