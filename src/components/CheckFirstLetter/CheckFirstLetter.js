@@ -1,24 +1,81 @@
-import React from 'react'
+import React, { useState, useRef, useCallback } from 'react'
+import { useMedia } from '../useMedia'
 import PropTypes from 'prop-types'
-// import { AudioPlayButton } from '../AudioPlay'
+import { AudioButton } from '../AudioButton'
+import { AudioWrapper } from './AudioWrapper'
+import { PlayWrapper } from './PlayWrapper'
+import { Wrapper } from './Wrapper'
+import { Play } from '../Play'
+import { YesOrNo } from '../YesOrNo'
 
-export const CheckFirstLetter = ({ urlAudio }) => {
+export const CheckFirstLetter = ({ urlAudio, words }) => {
+  const [state, setState] = useState({
+    instructionsCompleted: false,
+    end: false,
+    actualWordIndex: 0,
+    showYesOrNo: false,
+  })
+
+  const { actualWordIndex, showYesOrNo, instructionsCompleted, end } = state
+  const actualWord = words[actualWordIndex]
+  const urlWord = actualWord.urlWord
+  const setListened = () => {
+    setState({ ...state, showYesOrNo: true })
+  }
+
+  const setInstructionsCompleted = useCallback(
+    () => setState({ ...state, instructionsCompleted: true }),
+    [setState],
+  )
+
+  const setAnswered = () => {
+    const thisIsTheEnd = actualWordIndex === words.length - 1
+    if (thisIsTheEnd) {
+      setState({
+        ...state,
+        showYesOrNo: false,
+        end: true,
+      })
+    } else {
+      setState(({ actualWordIndex }) => ({
+        ...state,
+        showYesOrNo: false,
+        actualWordIndex: actualWordIndex + 1,
+      }))
+    }
+  }
+
   return (
-    <div>
-      {/* <AudioPlay src="https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/Essa+aqui+e%CC%81+a+letra+a.ogg" /> */}
-      <svg
-        x="0px"
-        y="0px"
-        width="20px"
-        height="20px"
-        viewBox="0 0 163.861 163.861"
-      >
-        <path
-          d="M34.857,3.613C20.084-4.861,8.107,2.081,8.107,19.106v125.637c0,17.042,11.977,23.975,26.75,15.509L144.67,97.275
-		c14.778-8.477,14.778-22.211,0-30.686L34.857,3.613z"
+    <Wrapper>
+      <AudioWrapper>
+        <AudioButton
+          disabled={instructionsCompleted}
+          src={urlAudio}
+          width={20}
+          onComplete={setInstructionsCompleted}
         />
-      </svg>
-    </div>
+      </AudioWrapper>
+      <PlayWrapper>
+        {showYesOrNo ? (
+          <YesOrNo
+            correctAnswer={actualWord.startsWithTheLetter ? 'yes' : 'no'}
+            urlRightAnswerExplanation={actualWord.urlRightAnswerExplanation}
+            urlWrongAnswerExplanation={actualWord.urlWrongAnswerExplanation}
+            onComplete={setAnswered}
+          />
+        ) : (
+          <AudioButton
+            beforeTrailCount={actualWordIndex}
+            afterTrailCount={words.length - actualWordIndex - 1}
+            disabled={!instructionsCompleted || end}
+            icon="play"
+            src={urlWord}
+            width={20}
+            onComplete={setListened}
+          />
+        )}
+      </PlayWrapper>
+    </Wrapper>
   )
 }
 

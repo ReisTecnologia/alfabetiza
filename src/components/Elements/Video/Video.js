@@ -3,7 +3,7 @@ import { VideoWrapper } from './VideoWrapper'
 import { StatusWrapper } from './StatusWrapper'
 import { VideoComponent } from './VideoComponent'
 import { Status } from './Status'
-import { useMedia } from '../useMedia'
+import { useMedia } from '../../useMedia'
 
 export const Video = ({ src }) => {
   const videoEl = useRef(null)
