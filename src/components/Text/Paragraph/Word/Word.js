@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 
 export const Word = ({
   word,
-  answerState = 'unanswered',
+  answerStatus = 'unanswered',
   marginLeft,
   paragraphIndex,
   wordIndex,
@@ -16,7 +16,7 @@ export const Word = ({
     <Wrapper
       onClick={notifyWordIndex}
       marginLeft={marginLeft}
-      answerState={answerState}
+      answerStatus={answerStatus}
     >
       {word}
     </Wrapper>
@@ -26,7 +26,7 @@ export const Word = ({
 Word.propTypes = {
   word: PropTypes.string.isRequired,
   marginLeft: PropTypes.string,
-  answerState: PropTypes.oneOf(['unanswered', 'correct', 'wrong']),
+  answerStatus: PropTypes.oneOf(['unanswered', 'correct', 'wrong']),
   paragraphIndex: PropTypes.number.isRequired,
   wordIndex: PropTypes.number.isRequired,
 }

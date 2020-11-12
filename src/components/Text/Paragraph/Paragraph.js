@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 import { Word } from './Word'
 
 export const Paragraph = ({
-  text,
+  words,
   paragraphIndex,
   onWordClick,
-  clickedWords = [],
+  correctWords = [],
+  wrongWords = [],
 }) => {
-  const words = text.trim().split(' ')
   return (
     <Wrapper>
       {paragraphIndex}
@@ -20,8 +20,12 @@ export const Paragraph = ({
           paragraphIndex={paragraphIndex}
           wordIndex={wordIndex}
           onClick={onWordClick}
-          answerState={
-            clickedWords.includes(wordIndex) ? 'correct' : 'unanswered'
+          answerStatus={
+            correctWords.includes(wordIndex)
+              ? 'correct'
+              : wrongWords.includes(wordIndex)
+              ? 'wrong'
+              : 'unanswered'
           }
         />
       ))}
@@ -30,8 +34,9 @@ export const Paragraph = ({
 }
 
 Paragraph.propTypes = {
-  words: PropTypes.string.isRequired,
+  words: PropTypes.arrayOf(PropTypes.string).isRequired,
   paragraphIndex: PropTypes.number.isRequired,
   onWordClick: PropTypes.func.isRequired,
-  clickedWords: PropTypes.arrayOf(PropTypes.number.isRequired),
+  correctWords: PropTypes.arrayOf(PropTypes.number.isRequired),
+  wrongWords: PropTypes.arrayOf(PropTypes.number.isRequired),
 }

@@ -19,18 +19,18 @@ BasicWord.args = {
 export const CorrectWord = Template.bind({})
 CorrectWord.args = {
   word: 'Alambrado',
-  answerState: 'correct',
+  answerStatus: 'correct',
 }
 
 export const WrongWord = Template.bind({})
 WrongWord.args = {
   word: 'Alambrado',
-  answerState: 'wrong',
+  answerStatus: 'wrong',
 }
 
 export const MarginLeft = Template.bind({})
 MarginLeft.args = {
   word: 'Alambrado',
-  answerState: 'wrong',
+  answerStatus: 'wrong',
   marginLeft: '40px',
 }

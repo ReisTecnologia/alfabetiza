@@ -2,44 +2,61 @@ import React, { useState } from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { Paragraph } from './Paragraph'
-import isEqual from 'lodash.isequal'
+
+import { getParagraphWordsIndexes } from './getParagraphWordsIndexes'
+import { addOrRemoveFromArray } from './addOrRemoveFromArray'
 
 export const Text = ({ text, correctWords }) => {
   const paragraphs = text.split('\n')
-  const [clickedWords, setClickedWords] = useState([])
+
   const notEmpty = (text) => text.trim(text) !== ''
+  const paragraphsWords = paragraphs
+    .filter(notEmpty)
+    .map((paragraph) => paragraph.trim().split(' '))
+
+  const [correctClickedWords, setCorrectClickedWords] = useState([])
+  const [wrongClickedWords, setWrongClickedWords] = useState([])
+
+  const clickedWords = []
+
   const toggleWord = (_, { paragraphIndex, wordIndex }) => {
     const clickedWordAddress = { paragraphIndex, wordIndex }
-    const indexOfExistentWord = clickedWords.findIndex((wordAddress) =>
-      isEqual(wordAddress, clickedWordAddress),
+    const word = paragraphsWords[paragraphIndex][wordIndex]
+    const isCorrect = !!correctWords.find(
+      (correctWord) => correctWord.toLowerCase() === word.toLowerCase(),
     )
-    if (indexOfExistentWord !== -1) {
-      setClickedWords(
-        clickedWords.filter((_, index) => index !== indexOfExistentWord),
+    if (isCorrect) {
+      addOrRemoveFromArray(
+        correctClickedWords,
+        clickedWordAddress,
+        setCorrectClickedWords,
       )
     } else {
-      setClickedWords([...clickedWords, clickedWordAddress])
+      addOrRemoveFromArray(
+        wrongClickedWords,
+        clickedWordAddress,
+        setWrongClickedWords,
+      )
     }
   }
-  const filterByParagraph = (filteredParagraphIndex) => ({ paragraphIndex }) =>
-    paragraphIndex === filteredParagraphIndex
 
   return (
     <Wrapper>
-      {paragraphs.filter(notEmpty).map((paragraph, paragraphIndex) => {
-        const paragraphClickWords = clickedWords
-          .filter(filterByParagraph(paragraphIndex))
-          .map(({ wordIndex }) => wordIndex)
-
-        return (
-          <Paragraph
-            text={paragraph}
-            paragraphIndex={paragraphIndex}
-            onWordClick={toggleWord}
-            clickedWords={paragraphClickWords}
-          />
-        )
-      })}
+      {paragraphsWords.map((singleParagraphWords, paragraphIndex) => (
+        <Paragraph
+          words={singleParagraphWords}
+          paragraphIndex={paragraphIndex}
+          onWordClick={toggleWord}
+          correctWords={getParagraphWordsIndexes(
+            correctClickedWords,
+            paragraphIndex,
+          )}
+          wrongWords={getParagraphWordsIndexes(
+            wrongClickedWords,
+            paragraphIndex,
+          )}
+        />
+      ))}
     </Wrapper>
   )
 }

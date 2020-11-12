@@ -4,10 +4,10 @@ export const Wrapper = styled.div`
   margin-right: 3px;
   margin-left: ${({ marginLeft }) => marginLeft || null};
   cursor: ${({ onClick }) => (onClick ? 'pointer' : null)};
-  color: ${({ answerState }) =>
-    answerState === 'unanswered'
+  color: ${({ answerStatus }) =>
+    answerStatus === 'unanswered'
       ? '#333'
-      : answerState === 'correct'
+      : answerStatus === 'correct'
       ? '#3b3'
       : '#b33'};
 `

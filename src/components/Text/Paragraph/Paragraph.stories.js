@@ -11,15 +11,48 @@ export default {
 
 export const BasicParagraph = Template.bind({})
 BasicParagraph.args = {
-  text:
-    'Comprei um sítio no sertão de Piritiba. Com dos pés de guataíba, cajú, manga e cajá.',
+  words: [
+    'Comprei',
+    'um',
+    'sítio',
+    'no',
+    'sertão',
+    'de',
+    'Piritiba.',
+    'Com',
+    'dos',
+    'pés',
+    'de',
+    'guataíba,',
+    'cajú,',
+    'manga',
+    'e',
+    'cajá.',
+  ],
   paragraphIndex: 2,
 }
 
-export const ClickedWords = Template.bind({})
-ClickedWords.args = {
-  text:
-    'Comprei um sítio no sertão de Piritiba. Com dos pés de guataíba, cajú, manga e cajá.',
+export const AnsweredWords = Template.bind({})
+AnsweredWords.args = {
   paragraphIndex: 2,
-  clickedWords: [0, 4, 6, 7, 8],
+  words: [
+    'Comprei',
+    'um',
+    'sítio',
+    'no',
+    'sertão',
+    'de',
+    'Piritiba.',
+    'Com',
+    'dos',
+    'pés',
+    'de',
+    'guataíba,',
+    'cajú,',
+    'manga',
+    'e',
+    'cajá.',
+  ],
+  correctWords: [0, 4, 6, 7, 8],
+  wrongWords: [1, 2],
 }

@@ -22,5 +22,5 @@ export const CorrectWordsText = Template.bind({})
 CorrectWordsText.args = {
   text: `Comprei um sítio no sertão de Piritiba. Com dos pés de guataíba, cajú, manga e cajá.
 Peguei na enxada como faz um catingueiro, fiz aceiro botei fogo, venha ver como é que tá.`,
-  correctWords: ['comprei', 'com', 'cajú', 'cajá', 'catingueiro'],
+  correctWords: ['comprei', 'com', 'cajú', 'cajá', 'como', 'catingueiro'],
 }
