@@ -23,7 +23,6 @@ export default function Letra({ data }) {
 export const query = graphql`
   query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
       frontmatter {
         letra
         elements {
@@ -32,6 +31,13 @@ export const query = graphql`
           type
           urlAudio
           urlVideo
+          words {
+            word
+            urlWord
+            startsWithTheLetter
+            urlRightAnswerExplanation
+            urlWrongAnswerExplanation
+          }
         }
       }
     }

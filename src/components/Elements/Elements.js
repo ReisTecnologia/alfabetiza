@@ -8,7 +8,7 @@ import { Text } from './Text'
 import { Audio } from './Audio'
 
 export const Elements = ({ elements }) => {
-  return elements.map(({ type, letra, urlAudio, urlVideo, texto }) => {
+  return elements.map(({ type, letra, urlAudio, urlVideo, texto, words }) => {
     let element = null
     switch (type) {
       case 'LetterAndAudio':
@@ -21,7 +21,7 @@ export const Elements = ({ elements }) => {
         element = <Video src={urlVideo} />
         break
       case 'CheckFirstLetter':
-        element = <CheckFirstLetter urlAudio={urlAudio} />
+        element = <CheckFirstLetter urlAudio={urlAudio} words={words} />
         break
       default:
         throw new Error(`Unknown element type: ${type}`)
@@ -29,7 +29,7 @@ export const Elements = ({ elements }) => {
     return (
       <>
         {element}
-        {texto && <Text>{texto}</Text>}
+        {/* {texto && <Text>{texto}</Text>} */}
       </>
     )
   })

@@ -20,4 +20,10 @@ elements:
   - type: 'CheckFirstLetter'
     texto: 'Agora podemos fazer um exercício. Vou falar algumas palavras, e a cada palavra que você ouvir, repita em voz alta. Se o primeiro som da palavra for um dos sons da letra A, aperte o botão verde. Se não, aperte o vermelho.'
     urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/agora+fale+voce.ogg'
+    words:
+      - word: 'pessoa'
+        urlWord: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/pessoa.ogg'
+        startsWithTheLetter: false
+        urlRightAnswerExplanation: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/pessoa.ogg'
+        urlWrongAnswerExplanation: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/errado%2C+pessoa+na%CC%83o+comec%CC%A7a+com+a.ogg'
 ---
