@@ -1,21 +1,21 @@
 import React from 'react'
-import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { AudioButton } from '../../AudioButton'
-import { BigLetter } from '../../BigLetter'
+import { BigLetter } from './BigLetter'
 import { CenterWrapper } from './CenterWrapper'
 import { InnerWrapper } from './InnerWrapper'
+import { Card } from '../../Card'
 
 export const LetterAndAudio = ({ letter, src }) => {
   return (
-    <Wrapper>
+    <Card first>
       <CenterWrapper>
         <InnerWrapper>
           <AudioButton src={src} />
         </InnerWrapper>
       </CenterWrapper>
       <BigLetter>{letter}</BigLetter>
-    </Wrapper>
+    </Card>
   )
 }
 

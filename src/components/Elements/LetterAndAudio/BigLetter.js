@@ -15,11 +15,12 @@ export const BigLetter = ({ children }) => {
     const width = bbox.width
     setWidth(width)
   }, [setWidth])
+  const color = '#366'
   return (
     <Wrapper>
       <svg width={width}>
         <text
-          fill={width ? '#000' : 'white'}
+          fill={width ? color : 'white'}
           ref={textRef}
           y="140"
           fontSize={200}
