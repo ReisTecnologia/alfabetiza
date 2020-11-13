@@ -3,14 +3,17 @@ import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { AudioButton } from '../../AudioButton'
 import { BigLetter } from '../../BigLetter'
-import { Center } from '../../Center'
+import { CenterWrapper } from './CenterWrapper'
+import { InnerWrapper } from './InnerWrapper'
 
 export const LetterAndAudio = ({ letter, src }) => {
   return (
     <Wrapper>
-      <Center>
-        <AudioButton src={src} />
-      </Center>
+      <CenterWrapper>
+        <InnerWrapper>
+          <AudioButton src={src} />
+        </InnerWrapper>
+      </CenterWrapper>
       <BigLetter>{letter}</BigLetter>
     </Wrapper>
   )
