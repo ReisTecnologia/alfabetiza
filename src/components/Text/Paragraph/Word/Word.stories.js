@@ -28,6 +28,12 @@ WrongWord.args = {
   answerStatus: 'wrong',
 }
 
+export const ClearWord = Template.bind({})
+ClearWord.args = {
+  word: 'Alambrado',
+  answerStatus: 'clear',
+}
+
 export const MarginLeft = Template.bind({})
 MarginLeft.args = {
   word: 'Alambrado',

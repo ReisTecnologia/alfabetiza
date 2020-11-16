@@ -15,6 +15,7 @@ export const Paragraph = ({
       {paragraphIndex}
       {words.map((word, wordIndex) => (
         <Word
+          key={wordIndex}
           word={word}
           marginLeft={wordIndex === 0 ? '2rem' : null}
           paragraphIndex={paragraphIndex}
