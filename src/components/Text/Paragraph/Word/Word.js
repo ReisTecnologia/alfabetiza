@@ -26,7 +26,7 @@ export const Word = ({
 Word.propTypes = {
   word: PropTypes.string.isRequired,
   marginLeft: PropTypes.string,
-  answerStatus: PropTypes.oneOf(['unanswered', 'correct', 'wrong']),
+  answerStatus: PropTypes.oneOf(['unanswered', 'correct', 'wrong', 'clear']),
   paragraphIndex: PropTypes.number.isRequired,
   wordIndex: PropTypes.number.isRequired,
 }
