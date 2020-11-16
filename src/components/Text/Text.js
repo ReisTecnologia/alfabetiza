@@ -23,11 +23,9 @@ export const Text = ({ text, correctWords }) => {
     const clickedWordAddress = { paragraphIndex, wordIndex }
     const wordWithPunctuation = paragraphsWords[paragraphIndex][wordIndex]
     let word
-    if (wordWithPunctuation.sub(wordWithPunctuation.length - 1).includes(',')) {
+    if (wordWithPunctuation.endsWith(',')) {
       word = wordWithPunctuation.slice(0, -1)
-    } else if (
-      wordWithPunctuation.sub(wordWithPunctuation.length - 1).includes('.')
-    ) {
+    } else if (wordWithPunctuation.endsWith('.')) {
       word = wordWithPunctuation.slice(0, -1)
     } else {
       word = wordWithPunctuation
