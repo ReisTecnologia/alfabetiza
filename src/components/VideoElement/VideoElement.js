@@ -1,11 +1,12 @@
 import React, { useRef } from 'react'
-import { VideoWrapper } from './VideoWrapper'
-import { StatusWrapper } from './StatusWrapper'
+import { VideoElementWrapper } from './VideoElementWrapper'
+import { PlayWrapper } from './PlayWrapper'
 import { VideoComponent } from './VideoComponent'
 import { Status } from './Status'
 import { useMedia } from '../useMedia'
 import { Card } from '../Card'
 import { useCompleteState } from '../useCompleteState'
+import { Play } from '../Play'
 
 export const VideoElement = ({ src }) => {
   const videoEl = useRef(null)
@@ -17,14 +18,14 @@ export const VideoElement = ({ src }) => {
 
   return (
     <Card complete={complete}>
-      <VideoWrapper onClick={play}>
-        <StatusWrapper>
-          <Status loading={loading} playing={playing} />
-        </StatusWrapper>
+      <VideoElementWrapper onClick={play}>
+        <PlayWrapper playing={playing}>
+          <Play disabled={loading} playing={playing} />
+        </PlayWrapper>
         <VideoComponent ref={videoEl}>
           <source src={src} type="video/mp4" />
         </VideoComponent>
-      </VideoWrapper>
+      </VideoElementWrapper>
     </Card>
   )
 }
