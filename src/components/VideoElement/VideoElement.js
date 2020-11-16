@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { VideoElementWrapper } from './VideoElementWrapper'
 import { PlayWrapper } from './PlayWrapper'
 import { VideoComponent } from './VideoComponent'
-import { Status } from './Status'
+
 import { useMedia } from '../useMedia'
 import { Card } from '../Card'
 import { useCompleteState } from '../useCompleteState'

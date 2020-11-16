@@ -26,8 +26,9 @@ export const query = graphql`
       frontmatter {
         letra
         elements {
-          letra
+          letter
           texto
+          text
           type
           urlAudio
           urlVideo

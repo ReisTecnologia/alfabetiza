@@ -12,7 +12,6 @@ export const Paragraph = ({
 }) => {
   return (
     <Wrapper>
-      {paragraphIndex}
       {words.map((word, wordIndex) => (
         <Word
           key={wordIndex}

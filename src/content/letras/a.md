@@ -2,7 +2,7 @@
 letra: 'A'
 elements:
   - type: 'LetterAndAudio'
-    letra: 'A'
+    letter: 'A'
     texto: 'Esta é a letra A'
     urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/Essa+aqui+e%CC%81+a+letra+a.ogg'
   - type: 'Audio'
@@ -26,4 +26,8 @@ elements:
         startsWithTheLetter: false
         urlRightAnswerExplanation: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/pessoa.ogg'
         urlWrongAnswerExplanation: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/errado%2C+pessoa+na%CC%83o+comec%CC%A7a+com+a.ogg'
+  - type: 'StartsWithLetterTextTask'
+    urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/Essa+aqui+e%CC%81+a+letra+a.ogg'
+    letter: 'a'
+    text: 'A senhora Prudência já salvou alguns cavaleiros e alguns cavalheiros. Deu-lhes equilíbrio e uma atitude mais ponderada. Pois quando estava com eles os aconselhava a pensar duas vezes antes de fazer algo que pudesse prejudicá-los.'
 ---
