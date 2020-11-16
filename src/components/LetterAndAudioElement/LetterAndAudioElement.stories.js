@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { LetterAndAudio } from './LetterAndAudio'
+import { LetterAndAudioElement } from './LetterAndAudioElement'
 
 export default {
   title: 'Elements/LetterAndAudio',
-  component: LetterAndAudio,
+  component: LetterAndAudioElement,
 }
 
-const Template = (args) => <LetterAndAudio {...args} />
+const Template = (args) => <LetterAndAudioElement {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {

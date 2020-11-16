@@ -1,11 +1,11 @@
 import React from 'react'
-import { Audio } from './Audio'
+import { AudioElement } from './AudioElement'
 
-const Template = (args) => <Audio {...args} />
+const Template = (args) => <AudioElement {...args} />
 
 export default {
-  title: 'Elements/Audio',
-  component: Audio,
+  title: 'Elements/AudioElement',
+  component: AudioElement,
 }
 
 export const Primary = Template.bind({})

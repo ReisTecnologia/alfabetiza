@@ -13,7 +13,7 @@ elements:
     urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/Veja+bem+como+a+boca+se+mexe+pra+falar+esses+sons.ogg'
   - type: 'Video'
     texto: 'Á.. ã...'
-    urlVideo: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/Boca+fazendo+os+sons+do+a.mp4'
+    urlVideo: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra.a.video.sons+da+letra.mp4'
   - type: 'Audio'
     texto: 'Agora fale os sons da letra A em voz alta e observe como a sua boca se mexe. Essa observação é muito importante para você aprender a ler e escrever. Se você precisar, assista o vídeo novamente.'
     urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/agora+fale+voce.ogg'

@@ -1,17 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AudioButton } from '../../AudioButton'
+import { AudioButton } from '../AudioButton'
 import { BigLetter } from './BigLetter'
 import { CenterWrapper } from './CenterWrapper'
 import { InnerWrapper } from './InnerWrapper'
-import { Card } from '../../Card'
+import { Card } from '../Card'
+import { useCompleteState } from '../useCompleteState'
 
-export const LetterAndAudio = ({ letter, src }) => {
+export const LetterAndAudioElement = ({ letter, src }) => {
+  const { complete, doComplete } = useCompleteState()
+
   return (
-    <Card first>
+    <Card first complete={complete}>
       <CenterWrapper>
         <InnerWrapper>
-          <AudioButton src={src} />
+          <AudioButton onComplete={doComplete} src={src} />
         </InnerWrapper>
       </CenterWrapper>
       <BigLetter>{letter}</BigLetter>
@@ -19,7 +22,7 @@ export const LetterAndAudio = ({ letter, src }) => {
   )
 }
 
-LetterAndAudio.propTypes = {
+LetterAndAudioElement.propTypes = {
   letter: PropTypes.string,
   src: PropTypes.string,
 }
