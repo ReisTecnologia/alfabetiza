@@ -42,7 +42,15 @@ export const Text = ({ text, correctWords }) => {
 
   const toggleWord = (_, { paragraphIndex, wordIndex }) => {
     const clickedWordAddress = { paragraphIndex, wordIndex }
-    const word = paragraphsWords[paragraphIndex][wordIndex]
+    const wordWithPunctuation = paragraphsWords[paragraphIndex][wordIndex]
+    let word
+    if (wordWithPunctuation.endsWith(',')) {
+      word = wordWithPunctuation.slice(0, -1)
+    } else if (wordWithPunctuation.endsWith('.')) {
+      word = wordWithPunctuation.slice(0, -1)
+    } else {
+      word = wordWithPunctuation
+    }
     const isCorrect = !!correctWords.find(
       (correctWord) => correctWord.toLowerCase() === word.toLowerCase()
     )
@@ -67,6 +75,7 @@ export const Text = ({ text, correctWords }) => {
     <Wrapper>
       {paragraphsWords.map((singleParagraphWords, paragraphIndex) => (
         <Paragraph
+          key={paragraphIndex}
           words={singleParagraphWords}
           paragraphIndex={paragraphIndex}
           onWordClick={toggleWord}
