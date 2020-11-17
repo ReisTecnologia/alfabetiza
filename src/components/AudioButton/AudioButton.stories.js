@@ -8,12 +8,11 @@ export default {
   argTypes: { onComplete: { action: 'onComplete' } },
 }
 
-const Template = (args) => <AudioButton {...args} />
+const Template = args => <AudioButton {...args} />
 
 export const WithAudio = Template.bind({})
 WithAudio.args = {
-  src:
-    'https://alfabetiza.s3-sa-east-1.amazonaws.com/letras/a/Essa+aqui+e%CC%81+a+letra+a.ogg',
+  src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/simples.m4a',
 }
 
 export const Small = Template.bind({})

@@ -4,9 +4,8 @@ import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { SvgThumbsDown } from '../SvgThumbsDown'
 import { SvgThumbsUp } from '../SvgThumbsUp'
-import Loadable from '@loadable/component'
 
-const YesOrNo = ({
+export const YesOrNo = ({
   correctAnswer,
   urlRightAnswerExplanation,
   urlWrongAnswerExplanation,
