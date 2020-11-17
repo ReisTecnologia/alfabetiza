@@ -16,6 +16,7 @@ export const AudioButton = ({
   afterTrailCount = 0,
 }) => {
   var audioElement = useRef(new Audio(src))
+  console.log('AudioButton', src, audioElement)
   const { play, playing, loading } = useMedia({
     mediaRef: audioElement,
     onComplete,
