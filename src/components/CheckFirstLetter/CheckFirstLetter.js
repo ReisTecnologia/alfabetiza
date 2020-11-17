@@ -1,13 +1,18 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { useMedia } from '../useMedia'
 import PropTypes from 'prop-types'
-import { AudioButton } from '../AudioButton'
+import loadable from '@loadable/component'
 import { AudioWrapper } from './AudioWrapper'
 import { PlayWrapper } from './PlayWrapper'
 import { CenterWrapper } from './CenterWrapper'
 import { Play } from '../Play'
 import { YesOrNo } from '../YesOrNo'
 import { Card } from '../Card'
+
+const AudioButton = loadable(async () => {
+  const { AudioButton } = await import('../AudioButton')
+  return props => <AudioButton {...props} />
+})
 
 export const CheckFirstLetter = ({ urlAudio, words }) => {
   const [state, setState] = useState({
@@ -26,7 +31,7 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
 
   const setInstructionsCompleted = useCallback(
     () => setState({ ...state, instructionsCompleted: true }),
-    [setState],
+    [setState]
   )
 
   const setAnswered = () => {

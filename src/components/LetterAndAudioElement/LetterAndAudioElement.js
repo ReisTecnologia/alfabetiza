@@ -1,11 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { AudioButton } from '../AudioButton'
+import loadable from '@loadable/component'
 import { BigLetter } from './BigLetter'
 import { CenterWrapper } from './CenterWrapper'
 import { InnerWrapper } from './InnerWrapper'
 import { Card } from '../Card'
 import { useCompleteState } from '../useCompleteState'
+
+const AudioButton = loadable(async () => {
+  const { AudioButton } = await import('../AudioButton')
+  return props => <AudioButton {...props} />
+})
 
 export const LetterAndAudioElement = ({ letter, src }) => {
   const { complete, doComplete } = useCompleteState()

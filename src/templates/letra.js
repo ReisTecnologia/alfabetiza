@@ -9,7 +9,7 @@ import { Elements } from '../components/Elements'
 
 export default function Letra({ data }) {
   const post = data.markdownRemark
-  console.log('Letra -> post', post)
+
   return (
     <Layout>
       <Titulo>{post.frontmatter.letra}</Titulo>
