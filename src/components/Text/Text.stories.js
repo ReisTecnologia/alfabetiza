@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text } from './Text'
 
-const Template = (args) => <Text {...args} />
+const Template = args => <Text {...args} />
 
 export default {
   title: 'Lib/Text',

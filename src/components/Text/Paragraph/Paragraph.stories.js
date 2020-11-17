@@ -1,7 +1,7 @@
 import React from 'react'
 import { Paragraph } from './Paragraph'
 
-const Template = (args) => <Paragraph {...args} />
+const Template = args => <Paragraph {...args} />
 
 export default {
   title: 'Lib/Text/Paragraph',
@@ -55,4 +55,30 @@ AnsweredWords.args = {
   ],
   correctWords: [0, 4, 6, 7, 8],
   wrongWords: [1, 2],
+}
+
+export const ClearWords = Template.bind({})
+ClearWords.args = {
+  paragraphIndex: 2,
+  words: [
+    'Comprei',
+    'um',
+    'sítio',
+    'no',
+    'sertão',
+    'de',
+    'Piritiba.',
+    'Com',
+    'dos',
+    'pés',
+    'de',
+    'guataíba,',
+    'cajú,',
+    'manga',
+    'e',
+    'cajá.',
+  ],
+  correctWords: [0, 4, 6, 7, 8],
+  wrongWords: [],
+  clearStatus: true,
 }

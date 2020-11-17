@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { Paragraph } from './Paragraph'
@@ -15,7 +15,7 @@ export const Text = ({ text, correctWords = [] }) => {
 
   const [correctClickedWords, setCorrectClickedWords] = useState([])
   const [wrongClickedWords, setWrongClickedWords] = useState([])
-
+  const [clearStatus, setClearStatus] = useState(false)
   const mergedParagraphWords = paragraphsWords.flat()
 
   const caseInsensitiveParagraphs = mergedParagraphWords.map(word =>
@@ -67,9 +67,17 @@ export const Text = ({ text, correctWords = [] }) => {
         setWrongClickedWords
       )
     }
-    console.log(clickedWords)
-    console.log(correctClickedWords)
+
+    if (
+      correctWordsArray.length === correctClickedWords.length + 1 &&
+      wrongClickedWords.length === 0
+    ) {
+      setClearStatus(true)
+    } else {
+      setClearStatus(false)
+    }
   }
+  useEffect(() => {}, [clearStatus])
 
   return (
     <Wrapper>
@@ -87,6 +95,7 @@ export const Text = ({ text, correctWords = [] }) => {
             wrongClickedWords,
             paragraphIndex
           )}
+          clearStatus={clearStatus}
         />
       ))}
     </Wrapper>
