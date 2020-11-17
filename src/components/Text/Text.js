@@ -38,6 +38,8 @@ export const Text = ({ text, correctWords = [] }) => {
     correctWords.includes(word)
   )
 
+  let clearStatus = false
+
   const clickedWords = []
 
   const toggleWord = (_, { paragraphIndex, wordIndex }) => {
@@ -67,8 +69,15 @@ export const Text = ({ text, correctWords = [] }) => {
         setWrongClickedWords
       )
     }
-    console.log(clickedWords)
-    console.log(correctClickedWords)
+
+    if (
+      correctWordsArray.length === correctClickedWords.length &&
+      wrongClickedWords.length === 0
+    ) {
+      clearStatus = true
+    } else {
+      clearStatus = false
+    }
   }
 
   return (
