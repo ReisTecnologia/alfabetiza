@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 
 export const useMedia = ({ mediaRef, onComplete }) => {
   const [playing, setPlaying] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [paused, setPaused] = useState(false)
   const listeners = useRef({
     loadeddata: null,
@@ -15,7 +15,7 @@ export const useMedia = ({ mediaRef, onComplete }) => {
     if (listeners.current.loadeddata) {
       mediaRef.current.removeEventListener(
         'loadeddata',
-        listeners.current.loadeddata,
+        listeners.current.loadeddata
       )
       mediaRef.current.removeEventListener('play', listeners.current.play)
       mediaRef.current.removeEventListener('ended', listeners.current.ended)
@@ -39,7 +39,7 @@ export const useMedia = ({ mediaRef, onComplete }) => {
     if (mediaRef.current) {
       mediaRef.current.addEventListener(
         'loadeddata',
-        listeners.current.loadeddata,
+        listeners.current.loadeddata
       )
       mediaRef.current.addEventListener('play', listeners.current.play)
       mediaRef.current.addEventListener('ended', listeners.current.ended)
