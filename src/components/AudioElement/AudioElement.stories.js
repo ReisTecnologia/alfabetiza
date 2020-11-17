@@ -10,10 +10,10 @@ export default {
 
 export const Primary = Template.bind({})
 Primary.args = {
-  src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/simples.m4a',
+  src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/audio.m4a',
 }
 
 export const Trails = Template.bind({})
 Trails.args = {
-  src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/simples.m4a',
+  src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/audio.m4a',
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { YesOrNo } from './YesOrNo'
 
-const Template = (args) => <YesOrNo {...args} />
+const Template = args => <YesOrNo {...args} />
 
 export default {
   title: 'Lib/YesOrNo',
@@ -13,7 +13,7 @@ export const BasicYesOrNo = Template.bind({})
 BasicYesOrNo.args = {
   correctAnswer: 'yes',
   urlRightAnswerExplanation:
-    'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/abelha/abelha+comec%CC%A7a+com+a.ogg',
+    'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.batata.certo.m4a',
   urlWrongAnswerExplanation:
-    'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/abelha/abelha+comec%CC%A7a+com+a.ogg',
+    'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.batata.errado.m4a',
 }
