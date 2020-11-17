@@ -16,27 +16,13 @@ export const Text = ({ text, correctWords = [] }) => {
   const [correctClickedWords, setCorrectClickedWords] = useState([])
   const [wrongClickedWords, setWrongClickedWords] = useState([])
 
-  const mergedParagraphWords = paragraphsWords.flat()
-
-  const caseInsensitiveParagraphs = mergedParagraphWords.map(word =>
-    word.toLowerCase()
-  )
-
-  const punctuationInsensitiveParagraphs = caseInsensitiveParagraphs.map(
-    word => {
-      if (word.endsWith(',')) {
-        return word.slice(0, -1)
-      } else if (word.endsWith('.')) {
-        return word.slice(0, -1)
-      } else {
-        return word
-      }
-    }
-  )
-
-  const correctWordsArray = punctuationInsensitiveParagraphs.filter(word =>
-    correctWords.includes(word)
-  )
+  const correctWordsArray = paragraphsWords
+    .flat()
+    .map(word =>
+      word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
+    )
+    .map(word => word.toLowerCase())
+    .filter(word => correctWords.includes(word))
 
   const clickedWords = []
 
