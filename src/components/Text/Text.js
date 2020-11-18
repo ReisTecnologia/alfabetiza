@@ -16,15 +16,19 @@ export const Text = ({ text, correctWords = [] }) => {
   const [correctClickedWords, setCorrectClickedWords] = useState([])
   const [wrongClickedWords, setWrongClickedWords] = useState([])
 
-  const correctWordsArray = paragraphsWords
+  const numCorrectWords = paragraphsWords
     .flat()
     .map(word =>
       word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
     )
     .map(word => word.toLowerCase())
-    .filter(word => correctWords.includes(word))
+    .filter(word => correctWords.includes(word)).length
 
-  const clickedWords = []
+  const clearStatus =
+    numCorrectWords === correctClickedWords.length &&
+    wrongClickedWords.length === 0
+      ? true
+      : false
 
   const toggleWord = (_, { paragraphIndex, wordIndex }) => {
     const clickedWordAddress = { paragraphIndex, wordIndex }
@@ -53,8 +57,6 @@ export const Text = ({ text, correctWords = [] }) => {
         setWrongClickedWords
       )
     }
-    console.log(clickedWords)
-    console.log(correctClickedWords)
   }
 
   return (
@@ -73,6 +75,7 @@ export const Text = ({ text, correctWords = [] }) => {
             wrongClickedWords,
             paragraphIndex
           )}
+          clearStatus={clearStatus}
         />
       ))}
     </Wrapper>
