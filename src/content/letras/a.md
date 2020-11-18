@@ -4,7 +4,7 @@ elements:
   - type: 'LetterAndAudio'
     letter: 'A'
     texto: 'Esta é a letra A'
-    urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/audio.m4a'
+    urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.batata.certo.m4a'
   - type: 'Audio'
     texto: 'Existem dois sons para a letra A. O som á e o som ã.'
     urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/audio.m4a'

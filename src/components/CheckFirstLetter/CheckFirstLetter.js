@@ -1,17 +1,16 @@
-import React, { useState, useRef, useCallback } from 'react'
-import { useMedia } from '../useMedia'
+import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 import { AudioWrapper } from './AudioWrapper'
 import { PlayWrapper } from './PlayWrapper'
 import { CenterWrapper } from './CenterWrapper'
-import { Play } from '../Play'
 import { YesOrNo } from '../YesOrNo'
 import { Card } from '../Card'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
-  return props => <AudioButton {...props} />
+  const LoadableAudioButton = props => <AudioButton {...props} />
+  return LoadableAudioButton
 })
 
 export const CheckFirstLetter = ({ urlAudio, words }) => {
