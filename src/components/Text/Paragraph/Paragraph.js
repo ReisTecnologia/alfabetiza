@@ -9,7 +9,20 @@ export const Paragraph = ({
   onWordClick,
   correctWords = [],
   wrongWords = [],
+  clearStatus,
 }) => {
+  const answerDoubt = wordIndex => {
+    if (clearStatus === true && !correctWords.includes(wordIndex)) {
+      return 'clear'
+    } else if (correctWords.includes(wordIndex)) {
+      return 'correct'
+    } else if (wrongWords.includes(wordIndex)) {
+      return 'wrong'
+    } else {
+      return 'unanswered'
+    }
+  }
+
   return (
     <Wrapper>
       {words.map((word, wordIndex) => (
@@ -20,13 +33,7 @@ export const Paragraph = ({
           paragraphIndex={paragraphIndex}
           wordIndex={wordIndex}
           onClick={onWordClick}
-          answerStatus={
-            correctWords.includes(wordIndex)
-              ? 'correct'
-              : wrongWords.includes(wordIndex)
-              ? 'wrong'
-              : 'unanswered'
-          }
+          answerStatus={answerDoubt(wordIndex)}
         />
       ))}
     </Wrapper>
@@ -39,4 +46,5 @@ Paragraph.propTypes = {
   onWordClick: PropTypes.func.isRequired,
   correctWords: PropTypes.arrayOf(PropTypes.number.isRequired),
   wrongWords: PropTypes.arrayOf(PropTypes.number.isRequired),
+  clearStatus: PropTypes.bool.isRequired,
 }
