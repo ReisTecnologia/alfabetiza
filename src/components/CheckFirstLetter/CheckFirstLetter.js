@@ -9,13 +9,13 @@ import { Card } from '../Card'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
-  const LoadableAudioButton = props => <AudioButton {...props} />
+  const LoadableAudioButton = (props) => <AudioButton {...props} />
   return LoadableAudioButton
 })
 
 export const CheckFirstLetter = ({ urlAudio, words }) => {
   const [state, setState] = useState({
-    instructionsCompleted: false,
+    instructionsCompleted: true,
     end: false,
     actualWordIndex: 0,
     showYesOrNo: false,
