@@ -21,6 +21,7 @@ export default function Letra({ data }) {
     <Layout>
       <Titulo>{post.frontmatter.letra}</Titulo>
       <Container>
+        ---
         <YesOrNo
           correctAnswer={'yes'}
           urlRightAnswerExplanation={
