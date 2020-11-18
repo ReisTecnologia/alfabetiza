@@ -4,8 +4,14 @@ import { Layout } from '../components/Layout'
 import { Container } from '../components/Container'
 import { Titulo } from '../components/Titulo'
 import { Rodape } from '../components/Rodape'
-import { YesOrNo } from '../components/YesOrNo'
+// import { YesOrNo } from '../components/YesOrNo'
+import loadable from '@loadable/component'
 import { Elements } from '../components/Elements'
+const YesOrNo = loadable(async () => {
+  const { YesOrNo } = await import('../YesOrNo')
+  const LoadableYesOrNo = (props) => <YesOrNo {...props} />
+  return LoadableYesOrNo
+})
 
 export default function Letra({ data }) {
   const post = data.markdownRemark
