@@ -32,10 +32,8 @@ export const YesOrNo = ({
   })
 
   useEffect(() => {
-    if (answerIsCorrect) {
-      playR()
-    } else {
-      playW()
+    if (answerIsCorrect !== null) {
+      answerIsCorrect ? playR() : playW()
     }
   }, [answerIsCorrect])
 

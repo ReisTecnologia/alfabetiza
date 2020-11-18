@@ -4,39 +4,29 @@ import { CheckFirstLetter } from './CheckFirstLetter'
 
 const words = [
   {
-    word: 'pessoa',
+    word: 'amizade',
     urlWord:
-      'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/pessoa.ogg',
-    startsWithTheLetter: false,
+      'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras.amizade.m4a',
+    startsWithTheLetter: true,
     urlRightAnswerExplanation:
-      'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/pessoa.ogg',
+      'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.amizade.certo.m4a',
     // urlRightAnswerExplanation:
     //   'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/errado%2C+pessoa+na%CC%83o+comec%CC%A7a+com+a.ogg',
     urlWrongAnswerExplanation:
-      'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/errado%2C+pessoa+na%CC%83o+comec%CC%A7a+com+a.ogg',
+      'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.amizade.errado.m4a',
   },
   {
-    word: 'pessoa',
+    word: 'batata',
     urlWord:
-      'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/pessoa.ogg',
+      'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras.batata.m4a',
     startsWithTheLetter: false,
     urlRightAnswerExplanation:
-      'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/pessoa.ogg',
+      'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.batata.certo.m4a',
     // urlRightAnswerExplanation:
     //   'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/errado%2C+pessoa+na%CC%83o+comec%CC%A7a+com+a.ogg',
     urlWrongAnswerExplanation:
-      'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/errado%2C+pessoa+na%CC%83o+comec%CC%A7a+com+a.ogg',
+      'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.batata.errado.m4a',
   },
-  // {
-  //   word: 'abelha',
-  //   urlWord:
-  //     'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/abelha/abelha.ogg',
-  //   startsWithTheLetter: true,
-  //   urlRightAnswerExplanation:
-  //     'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/abelha/abelha+comec%CC%A7a+com+a.ogg',
-  //   urlWrongAnswerExplanation:
-  //     'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/abelha/abelha+comec%CC%A7a+com+a.ogg',
-  // },
 ]
 
 export default {
@@ -44,7 +34,7 @@ export default {
   component: CheckFirstLetter,
 }
 
-const Template = (args) => <CheckFirstLetter {...args} />
+const Template = args => <CheckFirstLetter {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {
