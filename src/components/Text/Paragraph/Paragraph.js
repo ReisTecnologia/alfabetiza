@@ -12,7 +12,7 @@ export const Paragraph = ({
   clearStatus,
 }) => {
   const answerDoubt = wordIndex => {
-    if (clearStatus === true && correctWords.includes(wordIndex)) {
+    if (clearStatus === true && !correctWords.includes(wordIndex)) {
       return 'clear'
     } else if (correctWords.includes(wordIndex)) {
       return 'correct'

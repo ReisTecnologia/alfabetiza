@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { Paragraph } from './Paragraph'
@@ -15,17 +15,20 @@ export const Text = ({ text, correctWords = [] }) => {
 
   const [correctClickedWords, setCorrectClickedWords] = useState([])
   const [wrongClickedWords, setWrongClickedWords] = useState([])
-  const [clearStatus, setClearStatus] = useState(false)
 
-  const correctWordsArray = paragraphsWords
+  const numCorrectWords = paragraphsWords
     .flat()
     .map(word =>
       word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
     )
     .map(word => word.toLowerCase())
-    .filter(word => correctWords.includes(word))
+    .filter(word => correctWords.includes(word)).length
 
-  const clickedWords = []
+  const clearStatus =
+    numCorrectWords === correctClickedWords.length &&
+    wrongClickedWords.length === 0
+      ? true
+      : false
 
   const toggleWord = (_, { paragraphIndex, wordIndex }) => {
     const clickedWordAddress = { paragraphIndex, wordIndex }
@@ -54,17 +57,7 @@ export const Text = ({ text, correctWords = [] }) => {
         setWrongClickedWords
       )
     }
-
-    if (
-      correctWordsArray.length === correctClickedWords.length + 1 &&
-      wrongClickedWords.length === 0
-    ) {
-      setClearStatus(true)
-    } else {
-      setClearStatus(false)
-    }
   }
-  useEffect(() => {}, [clearStatus])
 
   return (
     <Wrapper>
