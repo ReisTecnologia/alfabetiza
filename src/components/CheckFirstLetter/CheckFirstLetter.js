@@ -74,7 +74,7 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
               beforeTrailCount={actualWordIndex}
               afterTrailCount={words.length - actualWordIndex - 1}
               disabled={!instructionsCompleted || end}
-              icon="play"
+              icon="Play"
               src={urlWord}
               width={20}
               onComplete={setListened}
@@ -88,4 +88,5 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
 
 CheckFirstLetter.propTypes = {
   urlAudio: PropTypes.string,
+  words: PropTypes.array,
 }

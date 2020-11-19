@@ -1,58 +1,63 @@
 import React, { useRef, useCallback } from 'react'
 import PropTypes from 'prop-types'
-import { Speaker } from '../Speaker'
-import { Play } from '../Play'
+import { Icon } from '../Icon'
 import { useMedia } from '../useMedia'
 import { Wrapper } from './Wrapper'
 import { TrailDot } from './TrailDot'
+import { colors } from '../colors'
 
 export const AudioButton = ({
   src,
   size,
-  icon,
+  icon = 'Speaker',
+  onClick,
   onComplete,
   disabled,
+  color,
+  playingColor,
   beforeTrailCount = 0,
   afterTrailCount = 0,
 }) => {
+  if (!color) color = colors.ready
+  if (!playingColor) playingColor = colors.playing
+
   var audioElement = useRef(new Audio(src))
-  console.log('AudioButton', src, audioElement)
-  const { play, playing, loading } = useMedia({
+  const { play, playing } = useMedia({
     mediaRef: audioElement,
     onComplete,
   })
   const playIfEnabled = useCallback(() => {
-    !disabled && play()
+    if (!disabled) {
+      play()
+      onClick && onClick()
+    }
   }, [disabled, play])
 
-  if (loading) {
-    return 'loading...'
-  }
-  const color = disabled ? '#E5EBE0' : playing ? '#01796f' : '#B5BBC0'
-  const content =
-    icon === 'speaker' ? (
-      <Speaker disabled={disabled} playing={playing} size={size} />
-    ) : (
-      <Play disabled={disabled} playing={playing} size={size} />
-    )
+  if (!playingColor) playingColor = color
+  const showColor = playing ? playingColor : color
+  const content = <Icon shape={icon} color={showColor} size={size} />
   return (
     <Wrapper onClick={playIfEnabled} disabled={disabled}>
       {[...Array(beforeTrailCount)].map(() => (
-        <TrailDot color={color} />
+        <TrailDot key="beforeDots" color={color} />
       ))}
       {content}
       {[...Array(afterTrailCount)].map(() => (
-        <TrailDot color={color} />
+        <TrailDot key="afterDots" color={color} />
       ))}
     </Wrapper>
   )
 }
 
-AudioButton.defaultProps = {
-  icon: 'speaker',
-}
-
 AudioButton.propTypes = {
   src: PropTypes.string.isRequired,
   icon: PropTypes.string,
+  size: PropTypes.string,
+  onClick: PropTypes.func,
+  onComplete: PropTypes.func,
+  disabled: PropTypes.bool,
+  color: PropTypes.string,
+  playingColor: PropTypes.string,
+  beforeTrailCount: PropTypes.number,
+  afterTrailCount: PropTypes.number,
 }

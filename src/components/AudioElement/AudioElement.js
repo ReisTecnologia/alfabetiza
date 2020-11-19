@@ -2,18 +2,18 @@ import React from 'react'
 import { Wrapper } from './Wrapper'
 import { InnerWrapper } from './InnerWrapper'
 import PropTypes from 'prop-types'
-import loadable from '@loadable/component'
 import { Card } from '../Card'
 import { useCompleteState } from '../useCompleteState'
+import loadable from '@loadable/component'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
-  return props => <AudioButton {...props} />
+  const LoadableAudioButton = (props) => <AudioButton {...props} />
+  return LoadableAudioButton
 })
 
 export const AudioElement = ({ src }) => {
   const { complete, doComplete } = useCompleteState()
-  console.log('AudioElement', src)
   return (
     <Card complete={complete}>
       <Wrapper>
