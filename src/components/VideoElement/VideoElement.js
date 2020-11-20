@@ -6,7 +6,7 @@ import { VideoComponent } from './VideoComponent'
 import { useMedia } from '../useMedia'
 import { Card } from '../Card'
 import { useCompleteState } from '../useCompleteState'
-import { Play } from '../Play'
+import { Icon } from '../Icon'
 
 export const VideoElement = ({ src }) => {
   const videoEl = useRef(null)
@@ -20,7 +20,7 @@ export const VideoElement = ({ src }) => {
     <Card complete={complete}>
       <VideoElementWrapper onClick={play}>
         <PlayWrapper playing={playing}>
-          <Play disabled={loading} playing={playing} />
+          <Icon disabled={loading} playing={playing} />
         </PlayWrapper>
         <VideoComponent ref={videoEl}>
           <source src={src} type="video/mp4" />

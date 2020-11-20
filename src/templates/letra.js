@@ -4,15 +4,8 @@ import { Layout } from '../components/Layout'
 import { Container } from '../components/Container'
 import { Titulo } from '../components/Titulo'
 import { Rodape } from '../components/Rodape'
-import loadable from '@loadable/component'
 import { Elements } from '../components/Elements'
 import PropTypes from 'prop-types'
-
-const YesOrNo = loadable(async () => {
-  const { YesOrNo } = await import('../components/YesOrNo')
-  const LoadableYesOrNo = (props) => <YesOrNo {...props} />
-  return LoadableYesOrNo
-})
 
 export default function Letra({ data }) {
   const post = data.markdownRemark
@@ -21,17 +14,6 @@ export default function Letra({ data }) {
     <Layout>
       <Titulo>{post.frontmatter.letra}</Titulo>
       <Container>
-        ---
-        <YesOrNo
-          correctAnswer={'yes'}
-          urlRightAnswerExplanation={
-            'https://alfabetiza.s3-sa-east-1.amazonaws.com/audio.m4a'
-          }
-          urlWrongAnswerExplanation={
-            'https://alfabetiza.s3-sa-east-1.amazonaws.com/audio.m4a'
-          }
-          onComplete={() => console.log('complete')}
-        />
         <Elements elements={post.frontmatter.elements} />
       </Container>
       <Rodape />

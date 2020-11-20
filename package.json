@@ -27,11 +27,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@storybook/addon-actions": "^6.0.28",
-    "@storybook/addon-essentials": "^6.0.28",
-    "@storybook/addon-links": "^6.0.28",
-    "@storybook/react": "^6.0.28",
+    "@storybook/addon-actions": "^6.1.0",
+    "@storybook/addon-essentials": "^6.1.0",
+    "@storybook/addon-links": "^6.1.0",
+    "@storybook/react": "^6.1.0",
     "babel-loader": "^8.1.0",
+    "chromatic": "^5.4.0",
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "prettier": "^1.19.1",
@@ -50,7 +51,8 @@
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "storybook": "start-storybook -p 6006 --no-dll",
-    "build-storybook": "build-storybook --no-dll"
+    "build-storybook": "build-storybook --no-dll",
+    "chromatic": "npx chromatic --project-token wssvncinsla"
   },
   "repository": {
     "type": "git",

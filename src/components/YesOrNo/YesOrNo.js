@@ -1,9 +1,14 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react'
-import { useMedia } from '../useMedia'
+import React, { useState, useCallback } from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
-import { SvgThumbsDown } from '../SvgThumbsDown'
-import { SvgThumbsUp } from '../SvgThumbsUp'
+import loadable from '@loadable/component'
+import { colors } from '../colors'
+
+const AudioButton = loadable(async () => {
+  const { AudioButton } = await import('../AudioButton')
+  const LoadableAudioButton = (props) => <AudioButton {...props} />
+  return LoadableAudioButton
+})
 
 export const YesOrNo = ({
   correctAnswer,
@@ -12,69 +17,47 @@ export const YesOrNo = ({
   onComplete,
 }) => {
   const [answer, setAnswer] = useState(null)
-  const [answerIsCorrect, setAnswerIsCorrect] = useState(null)
-
-  var rightAnswerExplanationAudio = useRef(new Audio(urlRightAnswerExplanation))
-
-  const { play: playR, playing: playingR, loading: loadingR } = useMedia({
-    mediaRef: rightAnswerExplanationAudio,
-    onComplete: useCallback(() => {
-      onComplete({ answer, answerIsCorrect })
-    }, [answer, answerIsCorrect]),
-  })
-
-  var wrongAnswerExplanationAudio = useRef(new Audio(urlWrongAnswerExplanation))
-  const { play: playW, playing: playingW, loading: loadingW } = useMedia({
-    mediaRef: wrongAnswerExplanationAudio,
-    onComplete: useCallback(() => {
-      onComplete({ answer, answerIsCorrect })
-    }, [answer, answerIsCorrect]),
-  })
-
-  useEffect(() => {
-    if (answerIsCorrect !== null) {
-      answerIsCorrect ? playR() : playW()
-    }
-  }, [answerIsCorrect])
-
+  const alreadyAnswered = answer !== null
   const answerYes = useCallback(() => {
     setAnswer('yes')
-    setAnswerIsCorrect(correctAnswer === 'yes')
   }, [setAnswer])
 
   const answerNo = useCallback(() => {
     setAnswer('no')
-    setAnswerIsCorrect(correctAnswer === 'no')
   }, [setAnswer])
-
-  const thumbsUpMode =
-    answer === null
-      ? 'active'
-      : answer === 'yes'
-      ? answerIsCorrect
-        ? 'right'
-        : 'wrong'
-      : 'disabled'
-
-  const thumbsDownMode =
-    answer === null
-      ? 'active'
-      : answer === 'no'
-      ? answerIsCorrect
-        ? 'right'
-        : 'wrong'
-      : 'disabled'
 
   return (
     <Wrapper>
-      <SvgThumbsUp mode={thumbsUpMode} onClick={answerYes} />
-      <SvgThumbsDown mode={thumbsDownMode} onClick={answerNo} />
+      <AudioButton
+        icon="ThumbsUp"
+        disabled={alreadyAnswered}
+        playingColor={correctAnswer === 'yes' ? colors.right : colors.wrong}
+        onClick={answerYes}
+        onComplete={onComplete}
+        src={
+          correctAnswer === 'yes'
+            ? urlRightAnswerExplanation
+            : urlWrongAnswerExplanation
+        }
+      />
+      <AudioButton
+        icon="ThumbsDown"
+        disabled={alreadyAnswered}
+        playingColor={correctAnswer === 'no' ? colors.right : colors.wrong}
+        onClick={answerNo}
+        onComplete={onComplete}
+        src={
+          correctAnswer === 'no'
+            ? urlRightAnswerExplanation
+            : urlWrongAnswerExplanation
+        }
+      />
     </Wrapper>
   )
 }
 
 YesOrNo.propTypes = {
-  correctAnswer: PropTypes.string,
+  correctAnswer: PropTypes.oneOf(['yes', 'no']),
   urlRightAnswerExplanation: PropTypes.string,
   urlWrongAnswerExplanation: PropTypes.string,
   onComplete: PropTypes.string,
