@@ -1,6 +1,7 @@
 import React from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
+import { InnerWrapper } from './InnerWrapper'
 
 export const Word = ({
   word,
@@ -12,13 +13,25 @@ export const Word = ({
 }) => {
   const notifyWordIndex = (event) =>
     onClick(event, { paragraphIndex, wordIndex })
+
+  const wordWithoutPunctuation = (word) =>
+    word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
+
+  const punctuation = (word) =>
+    word.endsWith('.') || word.endsWith(',') ? word.slice(-1) : null
+
+  const punctuationToAdd = punctuation(word)
+
   return (
     <Wrapper
       onClick={notifyWordIndex}
       marginLeft={marginLeft}
       answerStatus={answerStatus}
     >
-      {word}
+      {wordWithoutPunctuation(word)}
+      {punctuationToAdd && (
+        <InnerWrapper word={word}>{punctuationToAdd}</InnerWrapper>
+      )}
     </Wrapper>
   )
 }

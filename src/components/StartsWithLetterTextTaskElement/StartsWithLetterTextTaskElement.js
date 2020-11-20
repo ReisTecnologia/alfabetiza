@@ -9,7 +9,7 @@ import { Text } from '../Text'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
-  return props => <AudioButton {...props} />
+  return (props) => <AudioButton {...props} />
 })
 
 export const StartsWithLetterTextTaskElement = ({ urlAudio, text, letter }) => {
@@ -17,13 +17,13 @@ export const StartsWithLetterTextTaskElement = ({ urlAudio, text, letter }) => {
 
   const correctWords = text
     .split('\n')
-    .map(line => line.split(' '))
+    .map((line) => line.split(' '))
     .flat()
-    .map(str =>
+    .map((str) =>
       str.endsWith('.') || str.endsWith(',') ? str.slice(0, -1) : str
     )
-    .map(str => str.toLowerCase())
-    .filter(str => str.startsWith(letter))
+    .map((str) => str.toLowerCase())
+    .filter((str) => str.startsWith(letter))
 
   return (
     <Card first complete={complete}>
