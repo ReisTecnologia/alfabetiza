@@ -1,8 +1,9 @@
 import React, { useRef } from 'react'
+import PropTypes from 'prop-types'
+
 import { VideoElementWrapper } from './VideoElementWrapper'
 import { PlayWrapper } from './PlayWrapper'
 import { VideoComponent } from './VideoComponent'
-
 import { useMedia } from '../useMedia'
 import { Card } from '../Card'
 import { useCompleteState } from '../useCompleteState'
@@ -29,4 +30,8 @@ export const VideoElement = ({ src }) => {
       </VideoElementWrapper>
     </Card>
   )
+}
+
+VideoElement.propTypes = {
+  src: PropTypes.string.isRequired,
 }

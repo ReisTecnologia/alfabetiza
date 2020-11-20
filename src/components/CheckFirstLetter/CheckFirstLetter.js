@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 import { AudioWrapper } from './AudioWrapper'
 import { PlayWrapper } from './PlayWrapper'
-import { CenterWrapper } from './CenterWrapper'
+import { Wrapper } from './Wrapper'
 import { YesOrNo } from '../YesOrNo'
 import { Card } from '../Card'
 
@@ -52,7 +52,7 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
 
   return (
     <Card>
-      <CenterWrapper>
+      <Wrapper>
         <AudioWrapper>
           <AudioButton
             disabled={instructionsCompleted}
@@ -81,7 +81,7 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
             />
           )}
         </PlayWrapper>
-      </CenterWrapper>
+      </Wrapper>
     </Card>
   )
 }

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
 export const AudioWrapper = styled.div`
-  display: inline-block;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 `
