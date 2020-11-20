@@ -51,7 +51,8 @@
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "storybook": "start-storybook -p 6006 --no-dll",
-    "build-storybook": "build-storybook --no-dll"
+    "build-storybook": "build-storybook --no-dll",
+    "chromatic": "npx chromatic --project-token wssvncinsla"
   },
   "repository": {
     "type": "git",
