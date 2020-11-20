@@ -1,7 +1,7 @@
 import React from 'react'
 import { StartsWithLetterTextTaskElement } from './StartsWithLetterTextTaskElement'
 
-const Template = args => <StartsWithLetterTextTaskElement {...args} />
+const Template = (args) => <StartsWithLetterTextTaskElement {...args} />
 
 export default {
   title: 'Elements/StartsWithLetterTextTaskElement',

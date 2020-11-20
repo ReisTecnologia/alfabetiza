@@ -14,24 +14,13 @@ export const Word = ({
   const notifyWordIndex = (event) =>
     onClick(event, { paragraphIndex, wordIndex })
 
-  const wordWithoutPunctuation = (word) => {
-    if (word.endsWith(',')) {
-      return word.slice(0, -1)
-    } else if (word.endsWith('.')) {
-      return word.slice(0, -1)
-    } else {
-      return word
-    }
-  }
-  const punctuation = (word) => {
-    if (word.endsWith(',')) {
-      return word.slice(-1)
-    } else if (word.endsWith('.')) {
-      return word.slice(-1)
-    } else {
-      return null
-    }
-  }
+  const wordWithoutPunctuation = (word) =>
+    word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
+
+  const punctuation = (word) =>
+    word.endsWith('.') || word.endsWith(',') ? word.slice(-1) : null
+
+  const punctuationToAdd = punctuation(word)
 
   return (
     <Wrapper
@@ -40,7 +29,9 @@ export const Word = ({
       answerStatus={answerStatus}
     >
       {wordWithoutPunctuation(word)}
-      <InnerWrapper word={word}>{punctuation(word)}</InnerWrapper>
+      {punctuationToAdd && (
+        <InnerWrapper word={word}>{punctuationToAdd}</InnerWrapper>
+      )}
     </Wrapper>
   )
 }
