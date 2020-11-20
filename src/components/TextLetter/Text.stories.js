@@ -1,11 +1,11 @@
 import React from 'react'
-import { Text } from './Text'
+import { TextLetter } from './Text'
 
-const Template = (args) => <Text {...args} />
+const Template = (args) => <TextLetter {...args} />
 
 export default {
-  title: 'Lib/Text',
-  component: Text,
+  title: 'Lib/TextLetter',
+  component: TextLetter,
 }
 
 export const BasicText = Template.bind({})
