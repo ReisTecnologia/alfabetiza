@@ -4,7 +4,7 @@ import { LetterAndAudioElement } from '../LetterAndAudioElement'
 
 import { VideoElement } from '../VideoElement'
 import { CheckFirstLetter } from '../CheckFirstLetter'
-
+import { Text } from './Text'
 import { AudioElement } from '../AudioElement'
 import { StartsWithLetterTextTaskElement } from '../StartsWithLetterTextTaskElement'
 
@@ -45,7 +45,12 @@ export const Elements = ({ elements }) => {
       return (
         <>
           {element}
-          {/* {texto && <Text>{texto}</Text>} */}
+          {texto && (
+            <Text>
+              {texto} | {urlAudio}
+            </Text>
+          )}
+          }
         </>
       )
     }
