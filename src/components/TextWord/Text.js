@@ -15,7 +15,7 @@ export const TextWord = ({ text, correctWords = [] }) => {
 
   const [correctClickedWords, setCorrectClickedWords] = useState([])
   const [wrongClickedWords, setWrongClickedWords] = useState([])
-
+  console.log(correctWords)
   const numCorrectWords = paragraphsWords
     .flat()
     .map((word) =>

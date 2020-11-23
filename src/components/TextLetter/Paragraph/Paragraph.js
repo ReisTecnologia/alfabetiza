@@ -6,10 +6,11 @@ import { Word } from './Word'
 export const Paragraph = ({
   words,
   paragraphIndex,
-  onWordClick,
+  onLetterClick,
+  correctLetters,
+  wrongLetters,
   clearStatus,
 }) => {
-  // const word = letters.join('')
   return (
     <Wrapper>
       {words.map((word, wordIndex) => (
@@ -19,7 +20,8 @@ export const Paragraph = ({
           marginLeft={wordIndex === 0 ? '2rem' : null}
           paragraphIndex={paragraphIndex}
           wordIndex={wordIndex}
-          onClick={onWordClick}
+          onClick={onLetterClick}
+          clearStatus={clearStatus}
         />
       ))}
     </Wrapper>
@@ -29,8 +31,8 @@ export const Paragraph = ({
 Paragraph.propTypes = {
   words: PropTypes.arrayOf(PropTypes.string).isRequired,
   paragraphIndex: PropTypes.number.isRequired,
-  onWordClick: PropTypes.func.isRequired,
-  correctWords: PropTypes.arrayOf(PropTypes.number.isRequired),
-  wrongWords: PropTypes.arrayOf(PropTypes.number.isRequired),
+  correctLetters: PropTypes.array,
+  wrongLetters: PropTypes.array,
+  onLetterClick: PropTypes.func.isRequired,
   clearStatus: PropTypes.bool.isRequired,
 }

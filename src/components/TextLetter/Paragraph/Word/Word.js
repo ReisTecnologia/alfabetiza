@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Letter } from './Letter/Letter'
 
 export const Word = ({
-  letters,
+  word,
   marginLeft,
   paragraphIndex,
   wordIndex,
@@ -13,7 +13,8 @@ export const Word = ({
   wrongLetters = [],
   clearStatus,
 }) => {
-  const answerDoubt = (letterIndex) => {
+  const letters = word.split('')
+  const calculateAnswerStatus = (letterIndex) => {
     if (clearStatus === true && !correctLetters.includes(letterIndex)) {
       return 'clear'
     } else if (correctLetters.includes(letterIndex)) {
@@ -34,7 +35,11 @@ export const Word = ({
           letterIndex={letterIndex}
           paragraphIndex={paragraphIndex}
           onClick={onLetterClick}
-          answerStatus={answerDoubt(letterIndex, correctLetters, wrongLetters)}
+          answerStatus={calculateAnswerStatus(
+            letterIndex,
+            correctLetters,
+            wrongLetters
+          )}
         />
       ))}
     </Wrapper>
@@ -42,7 +47,7 @@ export const Word = ({
 }
 
 Word.propTypes = {
-  letters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  word: PropTypes.string.isRequired,
   marginLeft: PropTypes.string,
   onLetterClick: PropTypes.func.isRequired,
   paragraphIndex: PropTypes.number.isRequired,
