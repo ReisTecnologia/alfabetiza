@@ -22,7 +22,6 @@ export const Paragraph = ({
       return 'unanswered'
     }
   }
-
   return (
     <Wrapper>
       {words.map((word, wordIndex) => (
@@ -33,11 +32,7 @@ export const Paragraph = ({
           paragraphIndex={paragraphIndex}
           wordIndex={wordIndex}
           onClick={onWordClick}
-          answerStatus={calculateAnswerStatus(
-            wordIndex,
-            correctWords,
-            wrongWords
-          )}
+          answerStatus={calculateAnswerStatus(wordIndex)}
         />
       ))}
     </Wrapper>

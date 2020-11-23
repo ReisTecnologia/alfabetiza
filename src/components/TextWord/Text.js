@@ -6,7 +6,7 @@ import { Paragraph } from './Paragraph'
 import { getParagraphWordsIndexes } from './getParagraphWordsIndexes'
 import { addOrRemoveFromArray } from './addOrRemoveFromArray'
 
-export const Text = ({ text, correctWords = [] }) => {
+export const TextWord = ({ text, correctWords = [] }) => {
   const paragraphs = text.split('\n')
   const notEmpty = (text) => text.trim(text) !== ''
   const paragraphsWords = paragraphs
@@ -15,7 +15,7 @@ export const Text = ({ text, correctWords = [] }) => {
 
   const [correctClickedWords, setCorrectClickedWords] = useState([])
   const [wrongClickedWords, setWrongClickedWords] = useState([])
-
+  console.log(correctWords)
   const numCorrectWords = paragraphsWords
     .flat()
     .map((word) =>
@@ -82,7 +82,7 @@ export const Text = ({ text, correctWords = [] }) => {
   )
 }
 
-Text.propTypes = {
+TextWord.propTypes = {
   text: PropTypes.string.isRequired,
   correctWords: PropTypes.arrayOf(PropTypes.string),
 }

@@ -5,7 +5,7 @@ import loadable from '@loadable/component'
 import { CenterWrapper } from './CenterWrapper'
 import { InnerWrapper } from './InnerWrapper'
 import { useCompleteState } from '../useCompleteState'
-import { Text } from '../Text'
+import { TextWord } from '../TextWord'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
@@ -32,7 +32,7 @@ export const StartsWithLetterTextTaskElement = ({ urlAudio, text, letter }) => {
           <AudioButton onComplete={doComplete} src={urlAudio} />
         </InnerWrapper>
       </CenterWrapper>
-      <Text text={text} correctWords={correctWords} />
+      <TextWord text={text} correctWords={correctWords} />
     </Card>
   )
 }
