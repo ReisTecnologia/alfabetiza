@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react'
+import React, { useRef, useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from '../Icon'
 import { useMedia } from '../useMedia'
@@ -20,8 +20,12 @@ export const AudioButton = ({
 }) => {
   if (!color) color = colors.ready
   if (!playingColor) playingColor = colors.playing
+  const [errorCode, setErrorCode] = useState(null)
 
   var audioElement = useRef(new Audio(src))
+  audioElement.current.onerror = () => {
+    setErrorCode(audioElement.current.error.code)
+  }
   const { play, playing } = useMedia({
     mediaRef: audioElement,
     onComplete,
@@ -34,7 +38,7 @@ export const AudioButton = ({
   }, [disabled, play])
 
   if (!playingColor) playingColor = color
-  const showColor = playing ? playingColor : color
+  const showColor = errorCode ? colors.wrong : playing ? playingColor : color
   const content = <Icon shape={icon} color={showColor} size={size} />
   return (
     <Wrapper onClick={playIfEnabled} disabled={disabled}>
@@ -42,6 +46,7 @@ export const AudioButton = ({
         <TrailDot key="beforeDots" color={color} />
       ))}
       {content}
+      {errorCode ? `error: ${errorCode}` : null}
       {[...Array(afterTrailCount)].map(() => (
         <TrailDot key="afterDots" color={color} />
       ))}

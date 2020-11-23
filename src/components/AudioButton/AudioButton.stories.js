@@ -18,6 +18,11 @@ WithAudio.args = {
   src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/audio.m4a',
 }
 
+export const WithWrongAudio = Template.bind({})
+WithWrongAudio.args = {
+  src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/___wrong.m4a',
+}
+
 export const Small = Template.bind({})
 Small.args = {
   size: 20,

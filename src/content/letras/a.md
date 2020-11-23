@@ -8,7 +8,9 @@ elements:
     letter: 'A'
     texto: 'Essa aqui é a forma da letra A'
     urlAudio: '2.m4a'
-  - type: 'Audio'
+---
+
+  <!-- - type: 'Audio'
     texto: 'Existem dois sons para a letra A. O som á e o som ã.'
     urlAudio: '3.m4a'
   - type: 'Audio'
@@ -84,4 +86,4 @@ elements:
     letter: 'a'
     texto: 'Será que você já está sabendo identificar a letra A nas palavras? No texto abaixo clique em todas as letras A (Se você acertar, ela vai ficar verde, senão, ela vai ficar vermelha)'
     text: 'A senhora Prudência já salvou alguns cavaleiros e alguns cavalheiros. Deu-lhes equilíbrio e uma atitude mais ponderada. Pois quando estava com eles os aconselhava a pensar duas vezes antes de fazer algo que pudesse prejudicá-los.'
----
+ -->
