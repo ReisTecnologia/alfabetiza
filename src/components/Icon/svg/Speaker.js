@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-export const SvgSpeaker = ({ playing, size = 35, disabled } = {}) => {
-  const color = disabled ? '#E5EBE0' : playing ? '#01796f' : '#B5BBC0'
+export const Speaker = ({ size, color }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +30,9 @@ export const SvgSpeaker = ({ playing, size = 35, disabled } = {}) => {
       />
     </svg>
   )
+}
+
+Speaker.propTypes = {
+  size: PropTypes.number,
+  color: PropTypes.string,
 }

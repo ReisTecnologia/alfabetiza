@@ -1,7 +1,7 @@
 import React from 'react'
 import { Paragraph } from './Paragraph'
 
-const Template = args => <Paragraph {...args} />
+const Template = (args) => <Paragraph {...args} />
 
 export default {
   title: 'Lib/Text/Paragraph',

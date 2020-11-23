@@ -21,6 +21,11 @@ elements:
     texto: 'Agora podemos fazer um exercício. Vou falar algumas palavras, e a cada palavra que você ouvir, repita em voz alta. Se o primeiro som da palavra for um dos sons da letra A, aperte o botão verde. Se não, aperte o vermelho.'
     urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.instruc%CC%A7o%CC%83es.m4a'
     words:
+      - word: 'amizade'
+        urlWord: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras.amizade.m4a'
+        startsWithTheLetter: true
+        urlRightAnswerExplanation: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.amizade.certo.m4a'
+        urlWrongAnswerExplanation: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.amizade.errado.m4a'
       - word: 'batata'
         urlWord: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras.batata.m4a'
         startsWithTheLetter: false

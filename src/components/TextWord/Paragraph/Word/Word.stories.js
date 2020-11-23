@@ -22,6 +22,12 @@ CorrectWord.args = {
   answerStatus: 'correct',
 }
 
+export const PunctuatedWord = Template.bind({})
+PunctuatedWord.args = {
+  word: 'Alambrado,',
+  answerStatus: 'correct',
+}
+
 export const WrongWord = Template.bind({})
 WrongWord.args = {
   word: 'Alambrado',

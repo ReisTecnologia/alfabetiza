@@ -10,8 +10,6 @@ const words = [
     startsWithTheLetter: true,
     urlRightAnswerExplanation:
       'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.amizade.certo.m4a',
-    // urlRightAnswerExplanation:
-    //   'https://alfabetiza.s3-sa-east-1.amazonaws.com/palavras/pessoa/errado%2C+pessoa+na%CC%83o+comec%CC%A7a+com+a.ogg',
     urlWrongAnswerExplanation:
       'https://alfabetiza.s3-sa-east-1.amazonaws.com/letra+a.comec%CC%A7a+com.amizade.errado.m4a',
   },
@@ -34,7 +32,7 @@ export default {
   component: CheckFirstLetter,
 }
 
-const Template = args => <CheckFirstLetter {...args} />
+const Template = (args) => <CheckFirstLetter {...args} />
 
 export const Primary = Template.bind({})
 Primary.args = {

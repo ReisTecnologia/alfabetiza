@@ -1,1 +1,0 @@
-export { SvgThumbsUp } from './SvgThumbsUp'
