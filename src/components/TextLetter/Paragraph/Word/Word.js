@@ -24,9 +24,6 @@ export const Word = ({
       return 'unanswered'
     }
   }
-  const word = letters.join('')
-  console.log(word)
-  console.log(letters)
   return (
     <Wrapper marginLeft={marginLeft}>
       {letters.map((letter, letterIndex) => (

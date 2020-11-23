@@ -9,7 +9,7 @@ export const Paragraph = ({
   onWordClick,
   clearStatus,
 }) => {
-  console.log(words)
+  // const word = letters.join('')
   return (
     <Wrapper>
       {words.map((word, wordIndex) => (

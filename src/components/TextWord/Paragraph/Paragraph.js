@@ -22,7 +22,6 @@ export const Paragraph = ({
       return 'unanswered'
     }
   }
-
   return (
     <Wrapper>
       {words.map((word, wordIndex) => (
