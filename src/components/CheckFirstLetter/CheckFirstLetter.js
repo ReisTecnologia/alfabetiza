@@ -1,9 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
-import { AudioWrapper } from './AudioWrapper'
-import { PlayWrapper } from './PlayWrapper'
-import { CenterWrapper } from './CenterWrapper'
+import { Wrapper } from './Wrapper'
 import { YesOrNo } from '../YesOrNo'
 import { Card } from '../Card'
 
@@ -52,36 +50,32 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
 
   return (
     <Card>
-      <CenterWrapper>
-        <AudioWrapper>
-          <AudioButton
-            disabled={instructionsCompleted}
-            src={urlAudio}
-            width={20}
-            onComplete={setInstructionsCompleted}
+      <Wrapper>
+        <AudioButton
+          disabled={instructionsCompleted}
+          src={urlAudio}
+          width={20}
+          onComplete={setInstructionsCompleted}
+        />
+        {showYesOrNo ? (
+          <YesOrNo
+            correctAnswer={actualWord.startsWithTheLetter ? 'yes' : 'no'}
+            urlRightAnswerExplanation={actualWord.urlRightAnswerExplanation}
+            urlWrongAnswerExplanation={actualWord.urlWrongAnswerExplanation}
+            onComplete={setAnswered}
           />
-        </AudioWrapper>
-        <PlayWrapper>
-          {showYesOrNo ? (
-            <YesOrNo
-              correctAnswer={actualWord.startsWithTheLetter ? 'yes' : 'no'}
-              urlRightAnswerExplanation={actualWord.urlRightAnswerExplanation}
-              urlWrongAnswerExplanation={actualWord.urlWrongAnswerExplanation}
-              onComplete={setAnswered}
-            />
-          ) : (
-            <AudioButton
-              beforeTrailCount={actualWordIndex}
-              afterTrailCount={words.length - actualWordIndex - 1}
-              disabled={!instructionsCompleted || end}
-              icon="Play"
-              src={urlWord}
-              width={20}
-              onComplete={setListened}
-            />
-          )}
-        </PlayWrapper>
-      </CenterWrapper>
+        ) : (
+          <AudioButton
+            beforeTrailCount={actualWordIndex}
+            afterTrailCount={words.length - actualWordIndex - 1}
+            disabled={!instructionsCompleted || end}
+            icon="Play"
+            src={urlWord}
+            width={20}
+            onComplete={setListened}
+          />
+        )}
+      </Wrapper>
     </Card>
   )
 }

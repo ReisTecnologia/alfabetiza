@@ -1,15 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { Play } from './svg/Play'
 import { Speaker } from './svg/Speaker'
 import { ThumbsDown } from './svg/ThumbsDown'
 import { ThumbsUp } from './svg/ThumbsUp'
 
-// const colors = {
-//   ready: '#B5BBC0',
-//   playing: '#01796f',
-//   disabled: '#E5EBE0',
-// }
 const components = {
   Play: Play,
   Speaker: Speaker,
@@ -17,7 +13,6 @@ const components = {
   ThumbsUp: ThumbsUp,
 }
 
-// {/* {IconSvg} */}
 export const Icon = ({
   shape = 'Play',
   color = '#000',
