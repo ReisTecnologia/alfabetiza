@@ -39,17 +39,17 @@ export const query = graphql`
         elements {
           letter
           texto
-          # text
+          text
           type
           urlAudio
-          # urlVideo
-          # words {
-          #   word
-          #   urlWord
-          #   startsWithTheLetter
-          #   urlRightAnswerExplanation
-          #   urlWrongAnswerExplanation
-          # }
+          urlVideo
+          words {
+            word
+            urlWord
+            startsWithTheLetter
+            urlRightAnswerExplanation
+            urlWrongAnswerExplanation
+          }
         }
       }
     }

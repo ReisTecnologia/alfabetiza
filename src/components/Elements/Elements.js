@@ -61,7 +61,9 @@ export const Elements = ({ elements }) => {
           {element}
           {texto && (
             <Text>
-              {texto} | {fullUrlAudio}
+              {texto} <br />
+              {fullUrlAudio}
+              {fullUrlVideo}
             </Text>
           )}
         </span>

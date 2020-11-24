@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState } from 'react'
+import React, { useRef, useCallback, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Icon } from '../Icon'
 import { useMedia } from '../useMedia'
@@ -22,13 +22,33 @@ export const AudioButton = ({
   if (!playingColor) playingColor = colors.playing
   const [errorCode, setErrorCode] = useState(null)
 
-  var audioElement = useRef(new Audio(src))
+  const isSequence = typeof src === 'object'
+  const [actualItem, setActualItem] = useState(isSequence ? 0 : null)
+
+  var audioElement = useRef(new Audio())
   audioElement.current.onerror = () => {
     setErrorCode(audioElement.current.error.code)
   }
+
+  useEffect(() => {
+    audioElement.current.src = isSequence ? src[actualItem] : src
+  }, [actualItem])
+
+  const internalOnComplete = useCallback(() => {
+    if (isSequence) {
+      if (actualItem === src.length - 1) {
+        onComplete()
+      } else {
+        console.log('b')
+        setActualItem((actualItem) => actualItem + 1)
+      }
+    } else {
+      onComplete()
+    }
+  }, [onComplete, actualItem, setActualItem])
   const { play, playing } = useMedia({
     mediaRef: audioElement,
-    onComplete,
+    onComplete: internalOnComplete,
   })
   const playIfEnabled = useCallback(() => {
     if (!disabled) {
@@ -40,22 +60,30 @@ export const AudioButton = ({
   if (!playingColor) playingColor = color
   const showColor = errorCode ? colors.wrong : playing ? playingColor : color
   const content = <Icon shape={icon} color={showColor} size={size} />
+
+  const numDotsBefore = isSequence ? actualItem : beforeTrailCount
+  const numDotsAfter = isSequence
+    ? src.length - actualItem - 1
+    : afterTrailCount
   return (
     <Wrapper onClick={playIfEnabled} disabled={disabled}>
-      {[...Array(beforeTrailCount)].map(() => (
-        <TrailDot key="beforeDots" color={color} />
+      {[...Array(numDotsBefore)].map((n) => (
+        <TrailDot key={n} color={color} />
       ))}
       {content}
       {errorCode ? `error: ${errorCode}` : null}
-      {[...Array(afterTrailCount)].map(() => (
-        <TrailDot key="afterDots" color={color} />
+      {[...Array(numDotsAfter)].map((n) => (
+        <TrailDot key={n} color={color} />
       ))}
     </Wrapper>
   )
 }
 
 AudioButton.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.arrayOf(PropTypes.string.isRequired),
+  ]),
   icon: PropTypes.string,
   size: PropTypes.string,
   onClick: PropTypes.func,

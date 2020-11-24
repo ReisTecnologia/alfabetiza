@@ -8,9 +8,7 @@ elements:
     letter: 'A'
     texto: 'Essa aqui é a forma da letra A'
     urlAudio: '2.m4a'
----
-
-  <!-- - type: 'Audio'
+  - type: 'Audio'
     texto: 'Existem dois sons para a letra A. O som á e o som ã.'
     urlAudio: '3.m4a'
   - type: 'Audio'
@@ -23,13 +21,13 @@ elements:
     texto: 'Boca falando o som "ã"'
     urlVideo: '6.mp4'
   - type: 'Audio'
-    texto: 'A palavra Anjo começa com a letra A, e o  som da letra é "ã". Fale em voz alta algumas palavras que você conhece com o som Ã.'
+    texto: 'A palavra Anjo começa com a letra A, e o som da letra é "ã". Fale em voz alta algumas palavras que você conhece com o som Ã.'
     urlAudio: '7.m4a'
   - type: 'Audio'
     texto: 'A palavra Água começa com a letra A e o som é "Á". Você conhece palavras que começam com o som Á?'
     urlAudio: '8.m4a'
   - type: 'CheckFirstLetter'
-    texto: 'Agora vou falar algumas palavras. Repita cada palavra que você ouvir em voz alta e aperte nessa imagem (imagem aparece) se a palavra iniciar com a letra A. (aparece a primeira imagem, começa o segundo áudio) E aperte nessa imagem se a palavra não iniciar com a letra A. (aparece a segunda imagem, começa o terceiro áudio) '
+    texto: 'Agora vou falar algumas palavras. Repita cada palavra que você ouvir em voz alta e aperte nessa imagem (imagem aparece) se a palavra iniciar com a letra A. (aparece a primeira imagem, começa o segundo áudio) E aperte nessa imagem se a palavra não iniciar com a letra A. (aparece a segunda imagem, começa o terceiro áudio) Caso a resposta esteja certa, a imagem vai ficar verde. Se for a resposta errada, a imagem vai ficar vermelha.'
     urlAudios: ['9.m4a', '10.m4a', '11.m4a']
     words:
       - word: 'beleza'
@@ -86,4 +84,4 @@ elements:
     letter: 'a'
     texto: 'Será que você já está sabendo identificar a letra A nas palavras? No texto abaixo clique em todas as letras A (Se você acertar, ela vai ficar verde, senão, ela vai ficar vermelha)'
     text: 'A senhora Prudência já salvou alguns cavaleiros e alguns cavalheiros. Deu-lhes equilíbrio e uma atitude mais ponderada. Pois quando estava com eles os aconselhava a pensar duas vezes antes de fazer algo que pudesse prejudicá-los.'
- -->
+---

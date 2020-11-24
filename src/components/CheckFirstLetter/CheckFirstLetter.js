@@ -11,7 +11,7 @@ const AudioButton = loadable(async () => {
   return LoadableAudioButton
 })
 
-export const CheckFirstLetter = ({ urlAudio, words }) => {
+export const CheckFirstLetter = ({ src, words }) => {
   const [state, setState] = useState({
     instructionsCompleted: true,
     end: false,
@@ -52,8 +52,7 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
     <Card>
       <Wrapper>
         <AudioButton
-          disabled={instructionsCompleted}
-          src={urlAudio}
+          src={src}
           width={20}
           onComplete={setInstructionsCompleted}
         />
@@ -81,6 +80,6 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
 }
 
 CheckFirstLetter.propTypes = {
-  urlAudio: PropTypes.string,
+  src: PropTypes.string,
   words: PropTypes.array,
 }
