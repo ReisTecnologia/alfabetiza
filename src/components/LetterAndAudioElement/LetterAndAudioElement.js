@@ -6,20 +6,25 @@ import { CenterWrapper } from './CenterWrapper'
 import { InnerWrapper } from './InnerWrapper'
 import { Card } from '../Card'
 import { useCompleteState } from '../useCompleteState'
+import { colors } from '../colors'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
-  return props => <AudioButton {...props} />
+  return (props) => <AudioButton {...props} />
 })
 
-export const LetterAndAudioElement = ({ letter, src }) => {
+export const LetterAndAudioElement = ({ letter, src, actual }) => {
   const { complete, doComplete } = useCompleteState()
 
   return (
     <Card first complete={complete}>
       <CenterWrapper>
         <InnerWrapper>
-          <AudioButton onComplete={doComplete} src={src} />
+          <AudioButton
+            color={actual ? colors.actual : null}
+            onComplete={doComplete}
+            src={src}
+          />
         </InnerWrapper>
       </CenterWrapper>
       <BigLetter>{letter}</BigLetter>
@@ -30,4 +35,5 @@ export const LetterAndAudioElement = ({ letter, src }) => {
 LetterAndAudioElement.propTypes = {
   letter: PropTypes.string,
   src: PropTypes.string,
+  actual: PropTypes.bool,
 }

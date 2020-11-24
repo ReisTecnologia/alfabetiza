@@ -11,8 +11,10 @@ export const AudioButton = ({
   size,
   icon = 'Speaker',
   onClick,
+  onStart,
   onComplete,
-  onStepChange,
+  onStepComplete,
+  onStepStart,
   disabled,
   color,
   playingColor,
@@ -38,13 +40,14 @@ export const AudioButton = ({
   const internalOnComplete = useCallback(() => {
     if (isSequence) {
       if (actualItem === src.length - 1) {
-        onComplete()
+        onStepComplete && onStepComplete(actualItem)
+        onComplete && onComplete()
       } else {
         setActualItem((actualItem) => actualItem + 1)
-        onStepChange(actualItem + 1)
+        onStepComplete && onStepComplete(actualItem)
       }
     } else {
-      onComplete()
+      onComplete && onComplete()
     }
   }, [onComplete, actualItem, setActualItem])
   const { play, playing } = useMedia({
@@ -53,6 +56,8 @@ export const AudioButton = ({
   })
   const playIfEnabled = useCallback(() => {
     if (!disabled) {
+      if (actualItem === 0) onStart && onStart()
+      onStepStart && onStepStart(actualItem)
       play()
       onClick && onClick()
     }
@@ -88,8 +93,10 @@ AudioButton.propTypes = {
   icon: PropTypes.string,
   size: PropTypes.string,
   onClick: PropTypes.func,
+  onStart: PropTypes.func,
   onComplete: PropTypes.func,
-  onStepChange: PropTypes.func,
+  onStepStart: PropTypes.func,
+  onStepComplete: PropTypes.func,
   disabled: PropTypes.bool,
   color: PropTypes.string,
   playingColor: PropTypes.string,

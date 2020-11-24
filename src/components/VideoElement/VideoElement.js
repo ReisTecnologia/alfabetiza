@@ -10,7 +10,7 @@ import { useCompleteState } from '../useCompleteState'
 import { Icon } from '../Icon'
 import { colors } from '../colors'
 
-export const VideoElement = ({ src }) => {
+export const VideoElement = ({ src, actual }) => {
   const videoElement = useRef(null)
   const [hasError, setHasError] = useState(false)
   const { complete, doComplete } = useCompleteState()
@@ -32,6 +32,8 @@ export const VideoElement = ({ src }) => {
 
   const color = hasError
     ? colors.wrong
+    : actual
+    ? colors.actual
     : playing
     ? colors.playing
     : colors.ready
@@ -53,4 +55,5 @@ export const VideoElement = ({ src }) => {
 
 VideoElement.propTypes = {
   src: PropTypes.string.isRequired,
+  actual: PropTypes.bool,
 }

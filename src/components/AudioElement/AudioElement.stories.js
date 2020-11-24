@@ -13,6 +13,12 @@ Primary.args = {
   src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/a1.m4a',
 }
 
+export const Actual = Template.bind({})
+Actual.args = {
+  actual: true,
+  src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/a1.m4a',
+}
+
 export const Trails = Template.bind({})
 Trails.args = {
   src: [

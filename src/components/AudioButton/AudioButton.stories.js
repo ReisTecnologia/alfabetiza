@@ -7,8 +7,10 @@ export default {
   component: AudioButton,
   argTypes: {
     onClick: { action: 'onClick' },
+    onStart: { action: 'onStart' },
     onComplete: { action: 'onComplete' },
-    onStepChange: { action: 'onStepChange' },
+    onStepStart: { action: 'onStepStart' },
+    onStepComplete: { action: 'onStepComplete' },
   },
 }
 

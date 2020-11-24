@@ -6,30 +6,40 @@ import { CenterWrapper } from './CenterWrapper'
 import { InnerWrapper } from './InnerWrapper'
 import { useCompleteState } from '../useCompleteState'
 import { Text } from '../Text'
+import { colors } from '../colors'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
-  return props => <AudioButton {...props} />
+  return (props) => <AudioButton {...props} />
 })
 
-export const StartsWithLetterTextTaskElement = ({ urlAudio, text, letter }) => {
+export const StartsWithLetterTextTaskElement = ({
+  urlAudio,
+  text,
+  letter,
+  actual,
+}) => {
   const { complete, doComplete } = useCompleteState()
 
   const correctWords = text
     .split('\n')
-    .map(line => line.split(' '))
+    .map((line) => line.split(' '))
     .flat()
-    .map(str =>
+    .map((str) =>
       str.endsWith('.') || str.endsWith(',') ? str.slice(0, -1) : str
     )
-    .map(str => str.toLowerCase())
-    .filter(str => str.startsWith(letter))
+    .map((str) => str.toLowerCase())
+    .filter((str) => str.startsWith(letter))
 
   return (
     <Card first complete={complete}>
       <CenterWrapper>
         <InnerWrapper>
-          <AudioButton onComplete={doComplete} src={urlAudio} />
+          <AudioButton
+            color={actual ? colors.actual : null}
+            onComplete={doComplete}
+            src={urlAudio}
+          />
         </InnerWrapper>
       </CenterWrapper>
       <Text text={text} correctWords={correctWords} />
@@ -41,4 +51,5 @@ StartsWithLetterTextTaskElement.propTypes = {
   urlAudio: PropTypes.string,
   text: PropTypes.string,
   letter: PropTypes.string,
+  actual: PropTypes.bool,
 }
