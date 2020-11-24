@@ -14,17 +14,35 @@ export const Word = ({
   clearStatus,
 }) => {
   const letters = word.split('')
-  const calculateAnswerStatus = (letterIndex) => {
-    if (clearStatus === true && !correctLetters.includes(letterIndex)) {
+
+  const letterComparison = (correctLetters, [wordIndex, letterIndex]) => {
+    let stringWordLetterIndex = JSON.stringify([wordIndex, letterIndex])
+
+    let comparisonFunction = correctLetters.some(function(element) {
+      return JSON.stringify(element) === stringWordLetterIndex
+    })
+    return comparisonFunction
+  }
+
+  const calculateAnswerStatus = (wordIndex, letterIndex) => {
+    if (
+      clearStatus === true &&
+      !letterComparison(correctLetters, [wordIndex, letterIndex]) === true
+    ) {
       return 'clear'
-    } else if (correctLetters.includes(letterIndex)) {
+    } else if (
+      letterComparison(correctLetters, [wordIndex, letterIndex]) === true
+    ) {
       return 'correct'
-    } else if (wrongLetters.includes(letterIndex)) {
+    } else if (
+      letterComparison(wrongLetters, [wordIndex, letterIndex]) === true
+    ) {
       return 'wrong'
     } else {
       return 'unanswered'
     }
   }
+
   return (
     <Wrapper marginLeft={marginLeft}>
       {letters.map((letter, letterIndex) => (
@@ -36,6 +54,7 @@ export const Word = ({
           paragraphIndex={paragraphIndex}
           onClick={onLetterClick}
           answerStatus={calculateAnswerStatus(
+            wordIndex,
             letterIndex,
             correctLetters,
             wrongLetters

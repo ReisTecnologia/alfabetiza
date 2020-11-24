@@ -7,9 +7,9 @@ export const Paragraph = ({
   words,
   paragraphIndex,
   onLetterClick,
-  correctLetters,
-  wrongLetters,
-  clearStatus,
+  correctLetters = [],
+  wrongLetters = [],
+  clearStatus = false,
 }) => {
   return (
     <Wrapper>
@@ -20,8 +20,10 @@ export const Paragraph = ({
           marginLeft={wordIndex === 0 ? '2rem' : null}
           paragraphIndex={paragraphIndex}
           wordIndex={wordIndex}
-          onClick={onLetterClick}
+          onLetterClick={onLetterClick}
           clearStatus={clearStatus}
+          correctLetters={correctLetters}
+          wrongLetters={wrongLetters}
         />
       ))}
     </Wrapper>
@@ -31,8 +33,8 @@ export const Paragraph = ({
 Paragraph.propTypes = {
   words: PropTypes.arrayOf(PropTypes.string).isRequired,
   paragraphIndex: PropTypes.number.isRequired,
-  correctLetters: PropTypes.array,
-  wrongLetters: PropTypes.array,
+  correctLetters: PropTypes.array.isRequired,
+  wrongLetters: PropTypes.array.isRequired,
   onLetterClick: PropTypes.func.isRequired,
   clearStatus: PropTypes.bool.isRequired,
 }

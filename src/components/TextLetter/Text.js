@@ -3,7 +3,10 @@ import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { Paragraph } from './Paragraph'
 
-import { getParagraphWordsIndexes } from './getParagraphWordsIndexes'
+import {
+  getWordLetterIndexes,
+  getParagraphWordsIndexes,
+} from './getParagraphWordsIndexes'
 import { addOrRemoveFromArray } from './addOrRemoveFromArray'
 
 export const TextLetter = ({ text, correctLetters = [] }) => {
@@ -16,7 +19,6 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
   const paragraphWordLetters = paragraphsWords.map((paragraph) =>
     paragraph.map((words) => words.split(''))
   )
-  console.log(paragraphWordLetters)
   const arrayOfAllLetters = paragraphWordLetters.flat(3)
 
   const [correctClickedLetters, setCorrectClickedLetters] = useState([])
@@ -24,17 +26,7 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
 
   const numCorrectLetters = arrayOfAllLetters
     .map((letters) => letters.toLowerCase())
-    .filter((letters) => correctLetters.includes(letters))
-  console.log(correctLetters)
-  console.log(numCorrectLetters)
-
-  // const numCorrectWords = paragraphsWords
-  //   .flat()
-  //   .map((word) =>
-  //     word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
-  //   )
-  //   .map((word) => word.toLowerCase())
-  //   .filter((word) => correctWords.includes(word)).length
+    .filter((letters) => correctLetters.includes(letters)).length
 
   const clearStatus =
     numCorrectLetters === correctClickedLetters.length &&
@@ -66,27 +58,29 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
 
   return (
     <Wrapper>
-      {paragraphsWords.map(
-        (singleParagraphWords, paragraphIndex, wordIndex) => (
-          <Paragraph
-            key={paragraphIndex}
-            words={singleParagraphWords.map((word) => word.toUpperCase())}
-            paragraphIndex={paragraphIndex}
-            onLetterClick={toggleWord}
-            correctLetters={getParagraphWordsIndexes(
-              correctClickedLetters,
-              paragraphIndex,
-              wordIndex
-            )}
-            wrongLetters={getParagraphWordsIndexes(
-              wrongClickedLetters,
-              paragraphIndex,
-              wordIndex
-            )}
-            clearStatus={clearStatus}
-          />
-        )
-      )}
+      {paragraphsWords.map((singleParagraphWords, paragraphIndex) => (
+        <Paragraph
+          key={paragraphIndex}
+          words={singleParagraphWords.map((word) => word.toUpperCase())}
+          paragraphIndex={paragraphIndex}
+          onLetterClick={toggleWord}
+          correctLetters={getParagraphWordsIndexes(
+            correctClickedLetters,
+            paragraphIndex
+          ).map((e, index) => [
+            e,
+            getWordLetterIndexes(correctClickedLetters, paragraphIndex)[index],
+          ])}
+          wrongLetters={getParagraphWordsIndexes(
+            wrongClickedLetters,
+            paragraphIndex
+          ).map((e, index) => [
+            e,
+            getWordLetterIndexes(wrongClickedLetters, paragraphIndex)[index],
+          ])}
+          clearStatus={clearStatus}
+        />
+      ))}
     </Wrapper>
   )
 }
