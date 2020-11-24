@@ -8,6 +8,7 @@ export default {
   argTypes: {
     onClick: { action: 'onClick' },
     onComplete: { action: 'onComplete' },
+    onStepChange: { action: 'onStepChange' },
   },
 }
 

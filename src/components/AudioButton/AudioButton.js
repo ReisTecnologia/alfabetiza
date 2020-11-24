@@ -12,6 +12,7 @@ export const AudioButton = ({
   icon = 'Speaker',
   onClick,
   onComplete,
+  onStepChange,
   disabled,
   color,
   playingColor,
@@ -39,8 +40,8 @@ export const AudioButton = ({
       if (actualItem === src.length - 1) {
         onComplete()
       } else {
-        console.log('b')
         setActualItem((actualItem) => actualItem + 1)
+        onStepChange(actualItem + 1)
       }
     } else {
       onComplete()
@@ -88,6 +89,7 @@ AudioButton.propTypes = {
   size: PropTypes.string,
   onClick: PropTypes.func,
   onComplete: PropTypes.func,
+  onStepChange: PropTypes.func,
   disabled: PropTypes.bool,
   color: PropTypes.string,
   playingColor: PropTypes.string,
