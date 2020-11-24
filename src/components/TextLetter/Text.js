@@ -21,11 +21,16 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
   )
   const arrayOfAllLetters = paragraphWordLetters.flat(3)
 
+  const accentRemoval = (letterWithAccents) => {
+    return letterWithAccents.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  }
+
   const [correctClickedLetters, setCorrectClickedLetters] = useState([])
   const [wrongClickedLetters, setWrongClickedLetters] = useState([])
 
   const numCorrectLetters = arrayOfAllLetters
     .map((letters) => letters.toLowerCase())
+    .map((letters) => accentRemoval(letters))
     .filter((letters) => correctLetters.includes(letters)).length
 
   const clearStatus =
@@ -36,7 +41,10 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
 
   const toggleWord = (_, { paragraphIndex, wordIndex, letterIndex }) => {
     const clickedLetterAddress = { paragraphIndex, wordIndex, letterIndex }
-    const letter = paragraphWordLetters[paragraphIndex][wordIndex][letterIndex]
+    const letterWithAccents =
+      paragraphWordLetters[paragraphIndex][wordIndex][letterIndex]
+
+    let letter = accentRemoval(letterWithAccents)
 
     const isCorrect = !!correctLetters.find(
       (correctLetter) => correctLetter.toLowerCase() === letter.toLowerCase()

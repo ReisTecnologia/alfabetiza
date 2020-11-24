@@ -22,8 +22,6 @@ export const Paragraph = ({
       return 'unanswered'
     }
   }
-  console.log('correctWords:', correctWords)
-  console.log('wrongWords:', wrongWords)
   return (
     <Wrapper>
       {words.map((word, wordIndex) => (

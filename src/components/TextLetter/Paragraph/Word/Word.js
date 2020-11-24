@@ -23,7 +23,6 @@ export const Word = ({
     })
     return comparisonFunction
   }
-
   const calculateAnswerStatus = (wordIndex, letterIndex) => {
     if (
       clearStatus === true &&
