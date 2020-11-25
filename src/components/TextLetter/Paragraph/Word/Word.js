@@ -6,8 +6,8 @@ import { Letter } from './Letter/Letter'
 const answerColors = {
   unanswered: '#333',
   wrong: '#b33',
-  correct: '#6b6',
-  clear: '#696',
+  correct: '#0c6e0c',
+  clear: '#5ed65e',
 }
 
 const calculateAnswerStatus = (

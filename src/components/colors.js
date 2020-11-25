@@ -6,3 +6,9 @@ export const colors = {
   right: '#090',
   wrong: '#600',
 }
+export const answerColors = {
+  unanswered: '#333',
+  wrong: '#b33',
+  correct: '#0c6e0c',
+  clear: '#5ed65e',
+}
