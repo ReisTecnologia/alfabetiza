@@ -25,4 +25,5 @@ Letter.propTypes = {
   paragraphIndex: PropTypes.number.isRequired,
   wordIndex: PropTypes.number.isRequired,
   letterIndex: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
