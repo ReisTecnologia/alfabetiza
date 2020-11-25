@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextLetter } from './Text'
+import { TextLetter } from './TextLetter'
 
 const Template = (args) => <TextLetter {...args} />
 

@@ -60,7 +60,7 @@ export const Word = ({
 }
 
 Word.propTypes = {
-  word: PropTypes.string.isRequired,
+  word: PropTypes.arrayOf(PropTypes.string).isRequired,
   marginLeft: PropTypes.string,
   onLetterClick: PropTypes.func.isRequired,
   correctLetters: PropTypes.arrayOf(PropTypes.number).isRequired,
