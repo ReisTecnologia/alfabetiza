@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextLetter } from './Text'
+import { TextLetter } from './TextLetter'
 
 const Template = (args) => <TextLetter {...args} />
 
@@ -29,5 +29,5 @@ export const ClearLettersText = Template.bind({})
 ClearLettersText.args = {
   text: `Comprei um sítio no sertão de Piritiba. Com dos pés de guataíba, cajú, manga e cajá.
   Peguei na enxada como faz um catingueiro, fiz aceiro botei fogo, venha ver como é que tá.`,
-  correctLetters: ['c', 'f'],
+  correctLetters: ['a', 'g'],
 }

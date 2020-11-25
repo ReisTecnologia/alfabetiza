@@ -12,25 +12,10 @@ export default {
 export const BasicLetter = Template.bind({})
 BasicLetter.args = {
   letter: 'a',
-  wordIndex: 2,
-  paragraphIndex: 1,
-  letterIndex: 3,
 }
 
-export const CorrectLetter = Template.bind({})
-CorrectLetter.args = {
+export const GreenLetter = Template.bind({})
+GreenLetter.args = {
   letter: 'a',
-  answerStatus: 'correct',
-}
-
-export const WrongLetter = Template.bind({})
-WrongLetter.args = {
-  letter: 'a',
-  answerStatus: 'wrong',
-}
-
-export const ClearLetter = Template.bind({})
-ClearLetter.args = {
-  letter: 'a',
-  answerStatus: 'clear',
+  color: 'green',
 }

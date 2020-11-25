@@ -5,14 +5,13 @@ import { Word } from './Word'
 
 export const Paragraph = ({
   words,
-  paragraphIndex,
   onWordClick,
   correctWords = [],
   wrongWords = [],
   clearStatus,
 }) => {
   const calculateAnswerStatus = (wordIndex) => {
-    if (clearStatus === true && !correctWords.includes(wordIndex)) {
+    if (clearStatus && !correctWords.includes(wordIndex)) {
       return 'clear'
     } else if (correctWords.includes(wordIndex)) {
       return 'correct'
@@ -29,9 +28,7 @@ export const Paragraph = ({
           key={wordIndex}
           word={word}
           marginLeft={wordIndex === 0 ? '2rem' : null}
-          paragraphIndex={paragraphIndex}
-          wordIndex={wordIndex}
-          onClick={onWordClick}
+          onClick={(event) => onWordClick(event, wordIndex)}
           answerStatus={calculateAnswerStatus(wordIndex)}
         />
       ))}
@@ -41,7 +38,6 @@ export const Paragraph = ({
 
 Paragraph.propTypes = {
   words: PropTypes.arrayOf(PropTypes.string).isRequired,
-  paragraphIndex: PropTypes.number.isRequired,
   onWordClick: PropTypes.func.isRequired,
   correctWords: PropTypes.arrayOf(PropTypes.number.isRequired),
   wrongWords: PropTypes.arrayOf(PropTypes.number.isRequired),
