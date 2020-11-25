@@ -61,23 +61,28 @@ export const TextWord = ({ text, correctWords = [] }) => {
 
   return (
     <Wrapper>
-      {paragraphsWords.map((singleParagraphWords, paragraphIndex) => (
-        <Paragraph
-          key={paragraphIndex}
-          words={singleParagraphWords.map((word) => word.toUpperCase())}
-          paragraphIndex={paragraphIndex}
-          onWordClick={toggleWord}
-          correctWords={getParagraphWordsIndexes(
-            correctClickedWords,
-            paragraphIndex
-          )}
-          wrongWords={getParagraphWordsIndexes(
-            wrongClickedWords,
-            paragraphIndex
-          )}
-          clearStatus={clearStatus}
-        />
-      ))}
+      {paragraphsWords.map((singleParagraphWords, paragraphIndex) => {
+        const onWordClick = (event, wordIndex) =>
+          toggleWord(event, { wordIndex, paragraphIndex })
+
+        return (
+          <Paragraph
+            key={paragraphIndex}
+            words={singleParagraphWords.map((word) => word.toUpperCase())}
+            paragraphIndex={paragraphIndex}
+            onWordClick={onWordClick}
+            correctWords={getParagraphWordsIndexes(
+              correctClickedWords,
+              paragraphIndex
+            )}
+            wrongWords={getParagraphWordsIndexes(
+              wrongClickedWords,
+              paragraphIndex
+            )}
+            clearStatus={clearStatus}
+          />
+        )
+      })}
     </Wrapper>
   )
 }

@@ -7,13 +7,8 @@ export const Word = ({
   word,
   answerStatus = 'unanswered',
   marginLeft,
-  paragraphIndex,
-  wordIndex,
   onClick,
 }) => {
-  const notifyWordIndex = (event) =>
-    onClick(event, { paragraphIndex, wordIndex })
-
   const wordWithoutPunctuation = (word) =>
     word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
 
@@ -24,7 +19,7 @@ export const Word = ({
 
   return (
     <Wrapper
-      onClick={notifyWordIndex}
+      onClick={onClick}
       marginLeft={marginLeft}
       answerStatus={answerStatus}
     >
@@ -40,7 +35,5 @@ Word.propTypes = {
   word: PropTypes.string.isRequired,
   marginLeft: PropTypes.string,
   answerStatus: PropTypes.oneOf(['unanswered', 'correct', 'wrong', 'clear']),
-  paragraphIndex: PropTypes.number.isRequired,
-  wordIndex: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
 }
