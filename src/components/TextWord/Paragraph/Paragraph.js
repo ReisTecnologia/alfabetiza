@@ -9,6 +9,7 @@ export const Paragraph = ({
   correctWords = [],
   wrongWords = [],
   clearStatus,
+  color,
 }) => {
   const calculateAnswerStatus = (wordIndex) => {
     if (clearStatus && !correctWords.includes(wordIndex)) {
@@ -30,6 +31,7 @@ export const Paragraph = ({
           marginLeft={wordIndex === 0 ? '2rem' : null}
           onClick={(event) => onWordClick(event, wordIndex)}
           answerStatus={calculateAnswerStatus(wordIndex)}
+          color={color}
         />
       ))}
     </Wrapper>
@@ -42,4 +44,5 @@ Paragraph.propTypes = {
   correctWords: PropTypes.arrayOf(PropTypes.number.isRequired),
   wrongWords: PropTypes.arrayOf(PropTypes.number.isRequired),
   clearStatus: PropTypes.bool.isRequired,
+  color: PropTypes.string,
 }

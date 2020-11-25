@@ -2,47 +2,6 @@
 letra: 'A'
 elements:
   - type: 'Audio'
-    texto: 't1'
-    urlAudio: 'a1.m4a'
-  - type: 'LetterAndAudio'
-    letter: 'A'
-    texto: 't2'
-    urlAudio: 'a1.m4a'
-  - type: 'Audio'
-    texto: 't3'
-    urlAudio: 'a1.m4a'
-  - type: 'CheckFirstLetter'
-    texto: 't4. certa, errada'
-    urlAudios: ['a1.m4a', 'a2.m4a', 'a3.m4a']
-    words:
-      - word: 'beleza'
-        urlWord: 'a1.m4a'
-        startsWithTheLetter: false
-        urlRightAnswerExplanation: 'a2.m4a'
-        urlWrongAnswerExplanation: 'a3.m4a'
-      - word: 'alimento'
-        urlWord: 'a1.m4a'
-        startsWithTheLetter: true
-        urlRightAnswerExplanation: 'a2.m4a'
-        urlWrongAnswerExplanation: 'a3.m4a'
-  - type: 'Audio'
-    texto: 't5'
-    urlAudio: 'a2.m4a'
-  - type: 'StartsWithLetterTextTask'
-    urlAudio: 'a1.m4a'
-    letter: 'a'
-    texto: 't6'
-    text: 'Letra A'
-  - type: 'Audio'
-    texto: 't7'
-    urlAudio: 'a2.m4a'
-  - type: 'Video'
-    texto: 'Boca falando o som "ã"'
-    urlVideo: '6.mp4'
----
-
-<!--
-  - type: 'Audio'
     texto: 'Cada letra tem forma e tem som. A forma é a escrita da letra, o som é como falamos ela.'
     urlAudio: '1.m4a'
   - type: 'LetterAndAudio'
@@ -125,4 +84,4 @@ elements:
     letter: 'a'
     texto: 'Será que você já está sabendo identificar a letra A nas palavras? No texto abaixo clique em todas as letras A (Se você acertar, ela vai ficar verde, senão, ela vai ficar vermelha)'
     text: 'A senhora Prudência já salvou alguns cavaleiros e alguns cavalheiros. Deu-lhes equilíbrio e uma atitude mais ponderada. Pois quando estava com eles os aconselhava a pensar duas vezes antes de fazer algo que pudesse prejudicá-los.'
---- -->
+---
