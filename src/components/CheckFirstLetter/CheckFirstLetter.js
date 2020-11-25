@@ -80,6 +80,7 @@ export const CheckFirstLetter = ({ src, words, actual }) => {
           onStepStart={onStepStart}
           onStepComplete={onStepComplete}
           width={20}
+          loop={true}
           color={actual && !instructionsCompleted ? colors.actual : null}
           onComplete={setInstructionsCompleted}
         />

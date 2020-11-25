@@ -78,3 +78,13 @@ AudioSequence.args = {
     'https://alfabetiza.s3-sa-east-1.amazonaws.com/a3.m4a',
   ],
 }
+
+export const LoopAudioSequence = Template.bind({})
+LoopAudioSequence.args = {
+  loop: true,
+  src: [
+    'https://alfabetiza.s3-sa-east-1.amazonaws.com/a1.m4a',
+    'https://alfabetiza.s3-sa-east-1.amazonaws.com/a2.m4a',
+    'https://alfabetiza.s3-sa-east-1.amazonaws.com/a3.m4a',
+  ],
+}

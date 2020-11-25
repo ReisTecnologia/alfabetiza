@@ -42,6 +42,7 @@ export const AudioButton = ({
       if (actualItem === src.length - 1) {
         onStepComplete && onStepComplete(actualItem)
         onComplete && onComplete()
+        setActualItem(0)
       } else {
         setActualItem((actualItem) => actualItem + 1)
         onStepComplete && onStepComplete(actualItem)
