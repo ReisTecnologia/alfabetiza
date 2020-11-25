@@ -12,8 +12,6 @@ export default {
 export const BasicWord = Template.bind({})
 BasicWord.args = {
   word: ['A', 'l', 'a', 'm', 'b', 'r', 'a', 'd', 'o'],
-  wordIndex: 2,
-  paragraphIndex: 1,
 }
 
 export const AnsweredWord = Template.bind({})

@@ -1,1 +1,1 @@
-export * from './Text.js'
+export * from './TextWord.js'

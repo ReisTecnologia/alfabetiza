@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextWord } from './Text'
+import { TextWord } from './TextWord'
 
 const Template = (args) => <TextWord {...args} />
 

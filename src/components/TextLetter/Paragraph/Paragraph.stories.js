@@ -28,12 +28,10 @@ BasicParagraph.args = {
     ['e'],
     ['c', 'a', 'j', 'á', '.'],
   ],
-  paragraphIndex: 2,
 }
 
 export const AnsweredWords = Template.bind({})
 AnsweredWords.args = {
-  paragraphIndex: 2,
   words: [
     ['C', 'o', 'm', 'p', 'r', 'e', 'i'],
     ['u', 'm'],
@@ -64,7 +62,6 @@ AnsweredWords.args = {
 
 export const ClearWords = Template.bind({})
 ClearWords.args = {
-  paragraphIndex: 2,
   words: [
     ['C', 'o', 'm', 'p', 'r', 'e', 'i'],
     ['u', 'm'],
