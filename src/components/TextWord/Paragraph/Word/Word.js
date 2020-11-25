@@ -42,4 +42,5 @@ Word.propTypes = {
   answerStatus: PropTypes.oneOf(['unanswered', 'correct', 'wrong', 'clear']),
   paragraphIndex: PropTypes.number.isRequired,
   wordIndex: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
