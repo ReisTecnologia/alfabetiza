@@ -6,17 +6,21 @@ import { Paragraph } from './Paragraph'
 import { getParagraphWordsIndexes } from './getParagraphWordsIndexes'
 import { addOrRemoveFromArray } from './addOrRemoveFromArray'
 
-export const TextWord = ({ text, correctWords = [] }) => {
-  const paragraphs = text.split('\n')
-  const notEmpty = (text) => text.trim(text) !== ''
-  const paragraphsWords = paragraphs
+const removePunctuation = (wordWithPunctuation) =>
+  wordWithPunctuation.endsWith(',') || wordWithPunctuation.endsWith('.')
+    ? wordWithPunctuation.slice(0, -1)
+    : wordWithPunctuation
+
+const notEmpty = (text) => text.trim(text) !== ''
+
+const splitIntoParagraphWords = (text) =>
+  text
+    .split('\n')
     .filter(notEmpty)
     .map((paragraph) => paragraph.trim().split(' '))
 
-  const [correctClickedWords, setCorrectClickedWords] = useState([])
-  const [wrongClickedWords, setWrongClickedWords] = useState([])
-
-  const numCorrectWords = paragraphsWords
+const calculateNumCorrectWords = (paragraphsWords, correctWords) =>
+  paragraphsWords
     .flat()
     .map((word) =>
       word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
@@ -24,23 +28,28 @@ export const TextWord = ({ text, correctWords = [] }) => {
     .map((word) => word.toLowerCase())
     .filter((word) => correctWords.includes(word)).length
 
-  const clearStatus =
-    numCorrectWords === correctClickedWords.length &&
-    wrongClickedWords.length === 0
-      ? true
-      : false
+export const TextWord = ({ text, correctWords = [] }) => {
+  const paragraphsWords = splitIntoParagraphWords(text)
+
+  const [correctClickedWords, setCorrectClickedWords] = useState([])
+  const [wrongClickedWords, setWrongClickedWords] = useState([])
+
+  const numCorrectWords = calculateNumCorrectWords(
+    paragraphsWords,
+    correctWords
+  )
+
+  const allCorrectWordsAreClicked =
+    numCorrectWords === correctClickedWords.length
+  const noWrongWordsAreClicked = wrongClickedWords.length === 0
+
+  const clearStatus = allCorrectWordsAreClicked && noWrongWordsAreClicked
 
   const toggleWord = (_, { paragraphIndex, wordIndex }) => {
     const clickedWordAddress = { paragraphIndex, wordIndex }
     const wordWithPunctuation = paragraphsWords[paragraphIndex][wordIndex]
-    let word
-    if (wordWithPunctuation.endsWith(',')) {
-      word = wordWithPunctuation.slice(0, -1)
-    } else if (wordWithPunctuation.endsWith('.')) {
-      word = wordWithPunctuation.slice(0, -1)
-    } else {
-      word = wordWithPunctuation
-    }
+    let word = removePunctuation(wordWithPunctuation)
+
     const isCorrect = !!correctWords.find(
       (correctWord) => correctWord.toLowerCase() === word.toLowerCase()
     )
