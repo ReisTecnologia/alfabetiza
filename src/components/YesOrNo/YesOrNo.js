@@ -15,6 +15,7 @@ export const YesOrNo = ({
   urlRightAnswerExplanation,
   urlWrongAnswerExplanation,
   onComplete,
+  color,
 }) => {
   const [answer, setAnswer] = useState(null)
   const alreadyAnswered = answer !== null
@@ -34,6 +35,7 @@ export const YesOrNo = ({
         playingColor={correctAnswer === 'yes' ? colors.right : colors.wrong}
         onClick={answerYes}
         onComplete={onComplete}
+        color={color}
         src={
           correctAnswer === 'yes'
             ? urlRightAnswerExplanation
@@ -46,6 +48,7 @@ export const YesOrNo = ({
         playingColor={correctAnswer === 'no' ? colors.right : colors.wrong}
         onClick={answerNo}
         onComplete={onComplete}
+        color={color}
         src={
           correctAnswer === 'no'
             ? urlRightAnswerExplanation
@@ -60,5 +63,6 @@ YesOrNo.propTypes = {
   correctAnswer: PropTypes.oneOf(['yes', 'no']),
   urlRightAnswerExplanation: PropTypes.string,
   urlWrongAnswerExplanation: PropTypes.string,
+  color: PropTypes.string,
   onComplete: PropTypes.string,
 }

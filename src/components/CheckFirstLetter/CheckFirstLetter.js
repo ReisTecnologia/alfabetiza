@@ -4,6 +4,8 @@ import loadable from '@loadable/component'
 import { Wrapper } from './Wrapper'
 import { YesOrNo } from '../YesOrNo'
 import { Card } from '../Card'
+import { Icon } from '../Icon'
+import { colors } from '../colors'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
@@ -11,9 +13,11 @@ const AudioButton = loadable(async () => {
   return LoadableAudioButton
 })
 
-export const CheckFirstLetter = ({ urlAudio, words }) => {
+export const CheckFirstLetter = ({ src, words, actual }) => {
   const [state, setState] = useState({
-    instructionsCompleted: true,
+    instructionsCompleted: false,
+    showYesIcon: false,
+    showNoIcon: false,
     end: false,
     actualWordIndex: 0,
     showYesOrNo: false,
@@ -48,17 +52,43 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
     }
   }
 
+  const onStepComplete = useCallback(
+    (step) =>
+      setState((state) => ({
+        ...state,
+        showYesIcon: step === 0,
+        showNoIcon: step === 1,
+      })),
+    [setState]
+  )
+
+  const onStepStart = useCallback(
+    () =>
+      setState((state) => ({
+        ...state,
+        showYesIcon: false,
+        showNoIcon: false,
+      })),
+    [setState]
+  )
+
   return (
     <Card>
       <Wrapper>
         <AudioButton
-          disabled={instructionsCompleted}
-          src={urlAudio}
+          src={src}
+          onStepStart={onStepStart}
+          onStepComplete={onStepComplete}
           width={20}
+          loop={true}
+          color={actual && !instructionsCompleted ? colors.actual : null}
           onComplete={setInstructionsCompleted}
         />
+        {state.showYesIcon && <Icon shape="ThumbsUp" />}
+        {state.showNoIcon && <Icon shape="ThumbsDown" />}
         {showYesOrNo ? (
           <YesOrNo
+            color={actual && instructionsCompleted ? colors.actual : null}
             correctAnswer={actualWord.startsWithTheLetter ? 'yes' : 'no'}
             urlRightAnswerExplanation={actualWord.urlRightAnswerExplanation}
             urlWrongAnswerExplanation={actualWord.urlWrongAnswerExplanation}
@@ -68,7 +98,8 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
           <AudioButton
             beforeTrailCount={actualWordIndex}
             afterTrailCount={words.length - actualWordIndex - 1}
-            disabled={!instructionsCompleted || end}
+            color={actual && instructionsCompleted ? colors.actual : null}
+            disabled={end}
             icon="Play"
             src={urlWord}
             width={20}
@@ -81,6 +112,10 @@ export const CheckFirstLetter = ({ urlAudio, words }) => {
 }
 
 CheckFirstLetter.propTypes = {
-  urlAudio: PropTypes.string,
+  src: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.arrayOf(PropTypes.string.isRequired),
+  ]),
+  actual: PropTypes.bool,
   words: PropTypes.array,
 }

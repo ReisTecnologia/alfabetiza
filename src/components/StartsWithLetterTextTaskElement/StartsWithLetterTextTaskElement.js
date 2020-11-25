@@ -5,6 +5,7 @@ import loadable from '@loadable/component'
 import { CenterWrapper } from './CenterWrapper'
 import { InnerWrapper } from './InnerWrapper'
 import { useCompleteState } from '../useCompleteState'
+import { colors } from '../colors'
 import { TextWord } from '../TextWord'
 
 const AudioButton = loadable(async () => {
@@ -12,7 +13,12 @@ const AudioButton = loadable(async () => {
   return (props) => <AudioButton {...props} />
 })
 
-export const StartsWithLetterTextTaskElement = ({ urlAudio, text, letter }) => {
+export const StartsWithLetterTextTaskElement = ({
+  urlAudio,
+  text,
+  letter,
+  actual,
+}) => {
   const { complete, doComplete } = useCompleteState()
 
   const correctWords = text
@@ -29,7 +35,11 @@ export const StartsWithLetterTextTaskElement = ({ urlAudio, text, letter }) => {
     <Card first complete={complete}>
       <CenterWrapper>
         <InnerWrapper>
-          <AudioButton onComplete={doComplete} src={urlAudio} />
+          <AudioButton
+            color={actual ? colors.actual : null}
+            onComplete={doComplete}
+            src={urlAudio}
+          />
         </InnerWrapper>
       </CenterWrapper>
       <TextWord text={text} correctWords={correctWords} />
@@ -41,4 +51,5 @@ StartsWithLetterTextTaskElement.propTypes = {
   urlAudio: PropTypes.string,
   text: PropTypes.string,
   letter: PropTypes.string,
+  actual: PropTypes.bool,
 }
