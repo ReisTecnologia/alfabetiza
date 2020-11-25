@@ -3,63 +3,58 @@ import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { Letter } from './Letter/Letter'
 
+const answerColors = {
+  unanswered: '#333',
+  wrong: '#b33',
+  correct: '#6b6',
+  clear: '#696',
+}
+
+const calculateAnswerStatus = (
+  correctLetters,
+  wrongLetters,
+  clearStatus,
+  letterIndex
+) => {
+  const isCorrect = correctLetters.includes(letterIndex)
+  const isWrong = wrongLetters.includes(letterIndex)
+  return clearStatus && !isCorrect
+    ? 'clear'
+    : isCorrect
+    ? 'correct'
+    : isWrong
+    ? 'wrong'
+    : 'unanswered'
+}
+
 export const Word = ({
   word,
   marginLeft,
-  paragraphIndex,
-  wordIndex,
   onLetterClick,
   correctLetters = [],
   wrongLetters = [],
   clearStatus,
 }) => {
-  const letters = word.split('')
-
-  const letterComparison = (correctLetters, [wordIndex, letterIndex]) => {
-    let stringWordLetterIndex = JSON.stringify([wordIndex, letterIndex])
-
-    let comparisonFunction = correctLetters.some((element) => {
-      return JSON.stringify(element) === stringWordLetterIndex
-    })
-    return comparisonFunction
-  }
-  const calculateAnswerStatus = (wordIndex, letterIndex) => {
-    if (
-      clearStatus === true &&
-      !letterComparison(correctLetters, [wordIndex, letterIndex]) === true
-    ) {
-      return 'clear'
-    } else if (
-      letterComparison(correctLetters, [wordIndex, letterIndex]) === true
-    ) {
-      return 'correct'
-    } else if (
-      letterComparison(wrongLetters, [wordIndex, letterIndex]) === true
-    ) {
-      return 'wrong'
-    } else {
-      return 'unanswered'
-    }
-  }
-
   return (
     <Wrapper marginLeft={marginLeft}>
-      {letters.map((letter, letterIndex) => (
-        <Letter
-          key={letterIndex}
-          letter={letter}
-          wordIndex={wordIndex}
-          letterIndex={letterIndex}
-          paragraphIndex={paragraphIndex}
-          onClick={onLetterClick}
-          answerStatus={calculateAnswerStatus(
-            wordIndex,
-            letterIndex,
-            correctLetters,
-            wrongLetters
-          )}
-        />
-      ))}
+      {word.map((letter, letterIndex) => {
+        const answerStatus = calculateAnswerStatus(
+          correctLetters,
+          wrongLetters,
+          clearStatus,
+          letterIndex,
+          correctLetters,
+          wrongLetters
+        )
+        return (
+          <Letter
+            key={letterIndex}
+            letter={letter}
+            onClick={(event) => onLetterClick(event, letterIndex)}
+            color={answerColors[answerStatus]}
+          />
+        )
+      })}
     </Wrapper>
   )
 }
@@ -68,11 +63,7 @@ Word.propTypes = {
   word: PropTypes.string.isRequired,
   marginLeft: PropTypes.string,
   onLetterClick: PropTypes.func.isRequired,
-  paragraphIndex: PropTypes.number.isRequired,
-  wordIndex: PropTypes.number.isRequired,
-  correctLetters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
-    .isRequired,
-  wrongLetters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
-    .isRequired,
+  correctLetters: PropTypes.arrayOf(PropTypes.number).isRequired,
+  wrongLetters: PropTypes.arrayOf(PropTypes.number).isRequired,
   clearStatus: PropTypes.bool.isRequired,
 }
