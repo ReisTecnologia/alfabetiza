@@ -17,7 +17,6 @@ export const YesOrNo = ({
   onComplete,
   color,
 }) => {
-  console.log('color', color)
   const [answer, setAnswer] = useState(null)
   const alreadyAnswered = answer !== null
   const answerYes = useCallback(() => {
