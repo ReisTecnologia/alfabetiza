@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
 import { VideoElementWrapper } from './VideoElementWrapper'
@@ -10,23 +10,44 @@ import { useCompleteState } from '../useCompleteState'
 import { Icon } from '../Icon'
 import { colors } from '../colors'
 
-export const VideoElement = ({ src }) => {
-  const videoEl = useRef(null)
+export const VideoElement = ({ src, actual }) => {
+  const videoElement = useRef(null)
+  const [hasError, setHasError] = useState(false)
   const { complete, doComplete } = useCompleteState()
   const { play, playing } = useMedia({
-    mediaRef: videoEl,
+    mediaRef: videoElement,
     onComplete: doComplete,
   })
+  useEffect(() => {
+    videoElement.current.addEventListener(
+      'error',
+      function() {
+        setHasError(true)
+      },
+      true
+    )
+
+    // setErrorCode(videoElement.current.error.code)
+  }, [setHasError])
+
+  const color = hasError
+    ? colors.wrong
+    : actual
+    ? colors.actual
+    : playing
+    ? colors.playing
+    : colors.ready
 
   return (
     <Card complete={complete}>
       <VideoElementWrapper onClick={play}>
         <PlayWrapper playing={playing}>
-          <Icon color={playing ? colors.playing : colors.ready} />
+          <Icon color={color} />
         </PlayWrapper>
-        <VideoComponent ref={videoEl}>
+        <VideoComponent ref={videoElement}>
           <source src={src} type="video/mp4" />
         </VideoComponent>
+        {hasError && 'video error'}
       </VideoElementWrapper>
     </Card>
   )
@@ -34,4 +55,5 @@ export const VideoElement = ({ src }) => {
 
 VideoElement.propTypes = {
   src: PropTypes.string.isRequired,
+  actual: PropTypes.bool,
 }

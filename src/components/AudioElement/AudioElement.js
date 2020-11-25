@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { Card } from '../Card'
 import { useCompleteState } from '../useCompleteState'
 import loadable from '@loadable/component'
+import { colors } from '../colors'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
@@ -12,13 +13,18 @@ const AudioButton = loadable(async () => {
   return LoadableAudioButton
 })
 
-export const AudioElement = ({ src }) => {
+export const AudioElement = ({ src, actual }) => {
   const { complete, doComplete } = useCompleteState()
+
   return (
     <Card complete={complete}>
       <Wrapper>
         <InnerWrapper>
-          <AudioButton onComplete={doComplete} src={src} />
+          <AudioButton
+            color={actual ? colors.actual : null}
+            onComplete={doComplete}
+            src={src}
+          />
         </InnerWrapper>
       </Wrapper>
     </Card>
@@ -27,4 +33,5 @@ export const AudioElement = ({ src }) => {
 
 AudioElement.propTypes = {
   src: PropTypes.string,
+  actual: PropTypes.bool,
 }
