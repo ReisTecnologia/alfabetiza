@@ -12,8 +12,6 @@ export default {
 export const BasicWord = Template.bind({})
 BasicWord.args = {
   word: 'Alambrado',
-  wordIndex: 2,
-  paragraphIndex: 1,
 }
 
 export const CorrectWord = Template.bind({})

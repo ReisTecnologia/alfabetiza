@@ -29,9 +29,7 @@ export const Paragraph = ({
           key={wordIndex}
           word={word}
           marginLeft={wordIndex === 0 ? '2rem' : null}
-          paragraphIndex={paragraphIndex}
-          wordIndex={wordIndex}
-          onClick={onWordClick}
+          onClick={(event) => onWordClick(event, wordIndex)}
           answerStatus={calculateAnswerStatus(wordIndex)}
         />
       ))}
