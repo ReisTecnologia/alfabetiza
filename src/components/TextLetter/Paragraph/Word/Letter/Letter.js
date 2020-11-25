@@ -2,31 +2,27 @@ import React from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 
-export const Word = ({
-  word,
+export const Letter = ({
+  letter,
   answerStatus = 'unanswered',
-  marginLeft,
   paragraphIndex,
   wordIndex,
+  letterIndex,
   onClick,
 }) => {
-  const notifyWordIndex = (event) =>
-    onClick(event, { paragraphIndex, wordIndex })
+  const notifyLetterIndex = (event) =>
+    onClick(event, { paragraphIndex, wordIndex, letterIndex })
   return (
-    <Wrapper
-      onClick={notifyWordIndex}
-      marginLeft={marginLeft}
-      answerStatus={answerStatus}
-    >
-      {word}
+    <Wrapper onClick={notifyLetterIndex} answerStatus={answerStatus}>
+      {letter}
     </Wrapper>
   )
 }
 
-Word.propTypes = {
-  word: PropTypes.string.isRequired,
-  marginLeft: PropTypes.string,
+Letter.propTypes = {
+  letter: PropTypes.string.isRequired,
   answerStatus: PropTypes.oneOf(['unanswered', 'correct', 'wrong', 'clear']),
   paragraphIndex: PropTypes.number.isRequired,
   wordIndex: PropTypes.number.isRequired,
+  letterIndex: PropTypes.number.isRequired,
 }

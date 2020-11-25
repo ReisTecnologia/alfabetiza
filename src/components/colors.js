@@ -1,5 +1,5 @@
 export const colors = {
-  ready: '#B5BBC0',
+  ready: '#B5BBC2',
   playing: '#01796f',
   actual: '#000',
   highlight: '#1DA7FD',

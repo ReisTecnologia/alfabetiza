@@ -6,23 +6,23 @@ import { Paragraph } from './Paragraph'
 import { getParagraphWordsIndexes } from './getParagraphWordsIndexes'
 import { addOrRemoveFromArray } from './addOrRemoveFromArray'
 
-export const Text = ({ text, correctWords = [] }) => {
+export const TextWord = ({ text, correctWords = [] }) => {
   const paragraphs = text.split('\n')
-  const notEmpty = text => text.trim(text) !== ''
+  const notEmpty = (text) => text.trim(text) !== ''
   const paragraphsWords = paragraphs
     .filter(notEmpty)
-    .map(paragraph => paragraph.trim().split(' '))
+    .map((paragraph) => paragraph.trim().split(' '))
 
   const [correctClickedWords, setCorrectClickedWords] = useState([])
   const [wrongClickedWords, setWrongClickedWords] = useState([])
-
+  console.log(correctWords)
   const numCorrectWords = paragraphsWords
     .flat()
-    .map(word =>
+    .map((word) =>
       word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
     )
-    .map(word => word.toLowerCase())
-    .filter(word => correctWords.includes(word)).length
+    .map((word) => word.toLowerCase())
+    .filter((word) => correctWords.includes(word)).length
 
   const clearStatus =
     numCorrectWords === correctClickedWords.length &&
@@ -42,7 +42,7 @@ export const Text = ({ text, correctWords = [] }) => {
       word = wordWithPunctuation
     }
     const isCorrect = !!correctWords.find(
-      correctWord => correctWord.toLowerCase() === word.toLowerCase()
+      (correctWord) => correctWord.toLowerCase() === word.toLowerCase()
     )
     if (isCorrect) {
       addOrRemoveFromArray(
@@ -64,7 +64,7 @@ export const Text = ({ text, correctWords = [] }) => {
       {paragraphsWords.map((singleParagraphWords, paragraphIndex) => (
         <Paragraph
           key={paragraphIndex}
-          words={singleParagraphWords.map(word => word.toUpperCase())}
+          words={singleParagraphWords.map((word) => word.toUpperCase())}
           paragraphIndex={paragraphIndex}
           onWordClick={toggleWord}
           correctWords={getParagraphWordsIndexes(
@@ -82,7 +82,7 @@ export const Text = ({ text, correctWords = [] }) => {
   )
 }
 
-Text.propTypes = {
+TextWord.propTypes = {
   text: PropTypes.string.isRequired,
   correctWords: PropTypes.arrayOf(PropTypes.string),
 }

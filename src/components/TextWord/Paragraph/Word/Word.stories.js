@@ -4,7 +4,7 @@ import { Word } from './Word'
 const Template = (args) => <Word {...args} />
 
 export default {
-  title: 'Lib/Text/Paragraph/Word',
+  title: 'Lib/TextWord/Paragraph/Word',
   component: Word,
   argTypes: { onClick: { action: 'onClick' } },
 }
@@ -19,6 +19,12 @@ BasicWord.args = {
 export const CorrectWord = Template.bind({})
 CorrectWord.args = {
   word: 'Alambrado',
+  answerStatus: 'correct',
+}
+
+export const PunctuatedWord = Template.bind({})
+PunctuatedWord.args = {
+  word: 'Alambrado,',
   answerStatus: 'correct',
 }
 

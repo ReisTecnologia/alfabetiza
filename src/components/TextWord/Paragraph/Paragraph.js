@@ -11,7 +11,7 @@ export const Paragraph = ({
   wrongWords = [],
   clearStatus,
 }) => {
-  const answerDoubt = wordIndex => {
+  const calculateAnswerStatus = (wordIndex) => {
     if (clearStatus === true && !correctWords.includes(wordIndex)) {
       return 'clear'
     } else if (correctWords.includes(wordIndex)) {
@@ -22,7 +22,6 @@ export const Paragraph = ({
       return 'unanswered'
     }
   }
-
   return (
     <Wrapper>
       {words.map((word, wordIndex) => (
@@ -33,7 +32,7 @@ export const Paragraph = ({
           paragraphIndex={paragraphIndex}
           wordIndex={wordIndex}
           onClick={onWordClick}
-          answerStatus={answerDoubt(wordIndex)}
+          answerStatus={calculateAnswerStatus(wordIndex)}
         />
       ))}
     </Wrapper>
