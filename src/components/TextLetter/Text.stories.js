@@ -27,7 +27,7 @@ Peguei na enxada como faz um catingueiro, fiz aceiro botei fogo, venha ver como 
 
 export const ClearLettersText = Template.bind({})
 ClearLettersText.args = {
-  text: `Sertão de guataíba.
-  Enxada`,
+  text: `Comprei um sítio no sertão de Piritiba. Com dos pés de guataíba, cajú, manga e cajá.
+  Peguei na enxada como faz um catingueiro, fiz aceiro botei fogo, venha ver como é que tá.`,
   correctLetters: ['a', 'g'],
 }
