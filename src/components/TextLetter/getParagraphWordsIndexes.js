@@ -1,16 +1,12 @@
 const filterByParagraph = (filteredParagraphIndex) => ({ paragraphIndex }) =>
   paragraphIndex === filteredParagraphIndex
 
-const filterByWord = (filteredWordIndex) => ({ wordIndex }) =>
-  wordIndex === filteredWordIndex
-
-export const getParagraphWordsIndexes = (
-  clickedWords,
-  paragraphIndex,
-  wordIndex
-) =>
+export const getParagraphWordsIndexes = (clickedWords, paragraphIndex) =>
   clickedWords
     .filter(filterByParagraph(paragraphIndex))
     .map(({ wordIndex }) => wordIndex)
-    .filter(filterByWord(wordIndex))
+
+export const getWordLetterIndexes = (clickedLetters, paragraphIndex) =>
+  clickedLetters
+    .filter(filterByParagraph(paragraphIndex))
     .map(({ letterIndex }) => letterIndex)

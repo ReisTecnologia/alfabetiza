@@ -3,48 +3,58 @@ import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { Paragraph } from './Paragraph'
 
-import { getParagraphWordsIndexes } from './getParagraphWordsIndexes'
+import {
+  getWordLetterIndexes,
+  getParagraphWordsIndexes,
+} from './getParagraphWordsIndexes'
 import { addOrRemoveFromArray } from './addOrRemoveFromArray'
 
-export const TextLetter = ({ text, correctLetters = [] }) => {
-  const paragraphs = text.split('\n')
-  const notEmpty = (text) => text.trim(text) !== ''
-  const paragraphsWords = paragraphs
+const removeAccents = (letterWithAccents) => {
+  return letterWithAccents.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+}
+
+const notEmpty = (text) => text.trim(text) !== ''
+
+const splitIntoParagraphWordArrays = (text) => {
+  const paragraphs = text
+    .split('\n')
     .filter(notEmpty)
     .map((paragraph) => paragraph.trim().split(' '))
-
-  const paragraphWordLetters = paragraphsWords.map((paragraph) =>
+  return paragraphs.map((paragraph) =>
     paragraph.map((words) => words.split(''))
   )
-  console.log(paragraphWordLetters)
-  const arrayOfAllLetters = paragraphWordLetters.flat(3)
+}
 
+const calculateNumCorrectLetters = (paragraphWordLetters, correctLetters) => {
+  const arrayOfAllLetters = paragraphWordLetters.flat(3)
+  return arrayOfAllLetters
+    .map((letters) => letters.toLowerCase())
+    .map((letters) => removeAccents(letters))
+    .filter((letters) => correctLetters.includes(letters)).length
+}
+
+export const TextLetter = ({ text, correctLetters = [] }) => {
+  const paragraphWordLetters = splitIntoParagraphWordArrays(text)
   const [correctClickedLetters, setCorrectClickedLetters] = useState([])
   const [wrongClickedLetters, setWrongClickedLetters] = useState([])
 
-  const numCorrectLetters = arrayOfAllLetters
-    .map((letters) => letters.toLowerCase())
-    .filter((letters) => correctLetters.includes(letters))
-  console.log(correctLetters)
-  console.log(numCorrectLetters)
+  const numCorrectLetters = calculateNumCorrectLetters(
+    paragraphWordLetters,
+    correctLetters
+  )
 
-  // const numCorrectWords = paragraphsWords
-  //   .flat()
-  //   .map((word) =>
-  //     word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
-  //   )
-  //   .map((word) => word.toLowerCase())
-  //   .filter((word) => correctWords.includes(word)).length
+  const allCorrectLettersAreClicked =
+    numCorrectLetters === correctClickedLetters.length
+  const noWrongLettersAreClicked = wrongClickedLetters.length === 0
 
-  const clearStatus =
-    numCorrectLetters === correctClickedLetters.length &&
-    wrongClickedLetters.length === 0
-      ? true
-      : false
+  const clearStatus = allCorrectLettersAreClicked && noWrongLettersAreClicked
 
-  const toggleWord = (_, { paragraphIndex, wordIndex, letterIndex }) => {
+  const toggleLetter = (_, { paragraphIndex, wordIndex, letterIndex }) => {
     const clickedLetterAddress = { paragraphIndex, wordIndex, letterIndex }
-    const letter = paragraphWordLetters[paragraphIndex][wordIndex][letterIndex]
+    const letterWithAccents =
+      paragraphWordLetters[paragraphIndex][wordIndex][letterIndex]
+
+    let letter = removeAccents(letterWithAccents)
 
     const isCorrect = !!correctLetters.find(
       (correctLetter) => correctLetter.toLowerCase() === letter.toLowerCase()
@@ -66,27 +76,37 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
 
   return (
     <Wrapper>
-      {paragraphsWords.map(
-        (singleParagraphWords, paragraphIndex, wordIndex) => (
+      {paragraphWordLetters.map((singleParagraphWords, paragraphIndex) => {
+        const onLetterClick = (event, indexes) =>
+          toggleLetter(event, { ...indexes, paragraphIndex })
+
+        const correctLetters = getParagraphWordsIndexes(
+          correctClickedLetters,
+          paragraphIndex
+        ).map((wordIndex, index) => [
+          wordIndex,
+          getWordLetterIndexes(correctClickedLetters, paragraphIndex)[index],
+        ])
+
+        const wrongLetters = getParagraphWordsIndexes(
+          wrongClickedLetters,
+          paragraphIndex
+        ).map((wordIndex, index) => [
+          wordIndex,
+          getWordLetterIndexes(wrongClickedLetters, paragraphIndex)[index],
+        ])
+
+        return (
           <Paragraph
             key={paragraphIndex}
-            words={singleParagraphWords.map((word) => word.toUpperCase())}
-            paragraphIndex={paragraphIndex}
-            onLetterClick={toggleWord}
-            correctLetters={getParagraphWordsIndexes(
-              correctClickedLetters,
-              paragraphIndex,
-              wordIndex
-            )}
-            wrongLetters={getParagraphWordsIndexes(
-              wrongClickedLetters,
-              paragraphIndex,
-              wordIndex
-            )}
+            words={singleParagraphWords}
+            onLetterClick={onLetterClick}
+            correctLetters={correctLetters}
+            wrongLetters={wrongLetters}
             clearStatus={clearStatus}
           />
         )
-      )}
+      })}
     </Wrapper>
   )
 }
