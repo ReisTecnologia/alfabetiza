@@ -18,7 +18,7 @@ export const Word = ({
   const letterComparison = (correctLetters, [wordIndex, letterIndex]) => {
     let stringWordLetterIndex = JSON.stringify([wordIndex, letterIndex])
 
-    let comparisonFunction = correctLetters.some(function(element) {
+    let comparisonFunction = correctLetters.some((element) => {
       return JSON.stringify(element) === stringWordLetterIndex
     })
     return comparisonFunction
@@ -70,7 +70,9 @@ Word.propTypes = {
   onLetterClick: PropTypes.func.isRequired,
   paragraphIndex: PropTypes.number.isRequired,
   wordIndex: PropTypes.number.isRequired,
-  correctLetters: PropTypes.arrayOf(PropTypes.number).isRequired,
-  wrongLetters: PropTypes.arrayOf(PropTypes.number).isRequired,
+  correctLetters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
+  wrongLetters: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))
+    .isRequired,
   clearStatus: PropTypes.bool.isRequired,
 }
