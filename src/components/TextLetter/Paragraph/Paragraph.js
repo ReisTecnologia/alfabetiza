@@ -39,7 +39,7 @@ export const Paragraph = ({
 }
 
 Paragraph.propTypes = {
-  words: PropTypes.arrayOf(PropTypes.string).isRequired,
+  words: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   correctLetters: PropTypes.array.isRequired,
   wrongLetters: PropTypes.array.isRequired,
   onLetterClick: PropTypes.func.isRequired,
