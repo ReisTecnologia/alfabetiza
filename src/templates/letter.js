@@ -42,6 +42,7 @@ export const query = graphql`
           text
           type
           urlAudio
+          urlAudios
           urlVideo
           words {
             word

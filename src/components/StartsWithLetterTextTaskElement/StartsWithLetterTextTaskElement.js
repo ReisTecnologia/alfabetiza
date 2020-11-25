@@ -10,7 +10,8 @@ import { TextWord } from '../TextWord'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
-  return (props) => <AudioButton {...props} />
+  const LoadableAudioButton = (props) => <AudioButton {...props} />
+  return LoadableAudioButton
 })
 
 export const StartsWithLetterTextTaskElement = ({
@@ -18,8 +19,9 @@ export const StartsWithLetterTextTaskElement = ({
   text,
   letter,
   actual,
+  onComplete,
 }) => {
-  const { complete, doComplete } = useCompleteState()
+  const { complete, doComplete } = useCompleteState({ actual, onComplete })
 
   const correctWords = text
     .split('\n')
@@ -52,4 +54,5 @@ StartsWithLetterTextTaskElement.propTypes = {
   text: PropTypes.string,
   letter: PropTypes.string,
   actual: PropTypes.bool,
+  onComplete: PropTypes.func,
 }
