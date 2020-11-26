@@ -5,9 +5,9 @@ export const Wrapper = styled.div`
   font-size: 10vh;
   margin-left: ${({ marginLeft }) => marginLeft || null};
   cursor: ${({ onClick }) => (onClick ? 'pointer' : null)};
-  color: ${({ answerStatus }) => {
+  color: ${({ answerStatus, color }) => {
     if (answerStatus === 'unanswered') {
-      return '#333'
+      return color
     } else if (answerStatus === 'correct') {
       return '#0c6e0c'
     } else if (answerStatus === 'wrong') {

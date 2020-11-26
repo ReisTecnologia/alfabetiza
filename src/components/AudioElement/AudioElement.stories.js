@@ -6,6 +6,7 @@ const Template = (args) => <AudioElement {...args} />
 export default {
   title: 'Elements/AudioElement',
   component: AudioElement,
+  onComplete: { action: 'onComplete' },
 }
 
 export const Primary = Template.bind({})

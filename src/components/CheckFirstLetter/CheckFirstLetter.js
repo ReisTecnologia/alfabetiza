@@ -6,6 +6,7 @@ import { YesOrNo } from '../YesOrNo'
 import { Card } from '../Card'
 import { Icon } from '../Icon'
 import { colors } from '../colors'
+import { useCompleteState } from '../useCompleteState'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
@@ -13,7 +14,8 @@ const AudioButton = loadable(async () => {
   return LoadableAudioButton
 })
 
-export const CheckFirstLetter = ({ src, words, actual }) => {
+export const CheckFirstLetter = ({ src, words, actual, onComplete }) => {
+  const { complete, doComplete } = useCompleteState({ actual, onComplete })
   const [state, setState] = useState({
     instructionsCompleted: false,
     showYesIcon: false,
@@ -43,6 +45,7 @@ export const CheckFirstLetter = ({ src, words, actual }) => {
         showYesOrNo: false,
         end: true,
       })
+      doComplete()
     } else {
       setState(({ actualWordIndex }) => ({
         ...state,
@@ -73,7 +76,7 @@ export const CheckFirstLetter = ({ src, words, actual }) => {
   )
 
   return (
-    <Card>
+    <Card complete={complete}>
       <Wrapper>
         <AudioButton
           src={src}
@@ -118,4 +121,5 @@ CheckFirstLetter.propTypes = {
   ]),
   actual: PropTypes.bool,
   words: PropTypes.array,
+  onComplete: PropTypes.func,
 }
