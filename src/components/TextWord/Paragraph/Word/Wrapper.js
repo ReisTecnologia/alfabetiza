@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  margin-right: 5px;
-  font-size: 10vh;
+  margin-right: 2.2vh;
+  font-size: 6vh;
   margin-left: ${({ marginLeft }) => marginLeft || null};
   cursor: ${({ onClick }) => (onClick ? 'pointer' : null)};
   color: ${({ answerStatus }) => {
