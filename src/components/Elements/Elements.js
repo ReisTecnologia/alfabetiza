@@ -9,6 +9,8 @@ import { Text } from './Text'
 import { AudioElement } from '../AudioElement'
 import { StartsWithLetterTextTaskElement } from '../StartsWithLetterTextTaskElement'
 
+const SHOW_TEXTOS = false
+
 const bucketUrlPrefix = 'https://alfabetiza.s3-sa-east-1.amazonaws.com/'
 const addBucketPrefix = (relativeUri) =>
   relativeUri ? bucketUrlPrefix + relativeUri : null
@@ -110,9 +112,10 @@ export const Elements = ({ elements }) => {
       return (
         <span key={index}>
           {element}
-          {texto && (
+          {texto && SHOW_TEXTOS && (
             <Text>
-              {texto} <br />
+              {texto}
+              <br />
               {fullUrlAudio}
               {fullUrlVideo}
             </Text>
