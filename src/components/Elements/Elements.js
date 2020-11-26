@@ -30,26 +30,15 @@ export const Elements = ({ elements }) => {
       { type, letter, urlAudio, urlAudios, urlVideo, texto, words, text },
       index
     ) => {
-      console.log('map...')
-
       const fullUrlAudio = urlAudios
         ? urlAudios.map(addBucketPrefix)
         : addBucketPrefix(urlAudio)
       const fullUrlVideo = addBucketPrefix(urlVideo)
-
       let element = null
       const actual = actualElement === index
-      console.log('>>>>>>> >>>>>> a')
       const onComplete = () => {
         setActualElement(() => index + 1)
       }
-      // const onComplete = useCallBack(
-      //   (onCompleteData) => {
-      //     console.log('onComplete', onCompleteData)
-      //   },
-      //   [setActualElement]
-      // )
-      console.log('>>>>>>> >>>>>>', type, '--', fullUrlAudio)
       switch (type) {
         case 'LetterAndAudio':
           element = (
