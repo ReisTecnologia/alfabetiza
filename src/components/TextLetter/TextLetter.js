@@ -12,15 +12,12 @@ import { addOrRemoveFromArray } from './addOrRemoveFromArray'
 const removeAccents = (letterWithAccents) => {
   return letterWithAccents.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
-const removeDotsAndCommas = (letterWithoutAccents) => {
-  if (letterWithoutAccents === ',') {
-    return null
-  } else if (letterWithoutAccents === '.') {
-    return null
-  } else {
-    return letterWithoutAccents
-  }
-}
+const removeDotsAndCommas = (letterWithoutAccents) =>
+  letterWithoutAccents === ','
+    ? null
+    : letterWithoutAccents === '.'
+    ? null
+    : letterWithoutAccents
 
 const notEmpty = (text) => text.trim(text) !== ''
 
