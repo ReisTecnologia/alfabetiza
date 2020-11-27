@@ -6,9 +6,8 @@ import { Wrapper } from './Wrapper'
 export const CompleteAudio = ({ src, whenToPlay }) => {
   var audioElement = useRef(new Audio(src))
 
-  const { play, playing } = useMedia({
+  const { play } = useMedia({
     mediaRef: audioElement,
-    onComplete: null,
   })
   useEffect(() => {
     if (whenToPlay) {
