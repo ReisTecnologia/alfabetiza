@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 import { Wrapper } from './Wrapper'
 import { YesOrNo } from '../YesOrNo'
+import { CompleteAudio } from '../CompleteAudio'
 import { Card } from '../Card'
 import { Icon } from '../Icon'
 import { colors } from '../colors'
@@ -14,7 +15,13 @@ const AudioButton = loadable(async () => {
   return LoadableAudioButton
 })
 
-export const CheckFirstLetter = ({ src, words, actual, onComplete }) => {
+export const CheckFirstLetter = ({
+  src,
+  conclusionAudio,
+  words,
+  actual,
+  onComplete,
+}) => {
   const { complete, doComplete } = useCompleteState({ actual, onComplete })
   const [state, setState] = useState({
     instructionsCompleted: false,
@@ -77,6 +84,7 @@ export const CheckFirstLetter = ({ src, words, actual, onComplete }) => {
 
   return (
     <Card complete={complete}>
+      <CompleteAudio src={conclusionAudio} whenToPlay={end} />
       <Wrapper>
         <AudioButton
           src={src}
@@ -119,6 +127,7 @@ CheckFirstLetter.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.arrayOf(PropTypes.string.isRequired),
   ]),
+  conclusionAudio: PropTypes.string,
   actual: PropTypes.bool,
   words: PropTypes.array,
   onComplete: PropTypes.func,
