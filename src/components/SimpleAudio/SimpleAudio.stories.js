@@ -1,11 +1,11 @@
 import React from 'react'
-import { CompleteAudio } from './CompleteAudio'
+import { SimpleAudio } from './SimpleAudio'
 
-const Template = (args) => <CompleteAudio {...args} />
+const Template = (args) => <SimpleAudio {...args} />
 
 export default {
   title: 'Elements/CompleteAudio',
-  component: CompleteAudio,
+  component: SimpleAudio,
   onComplete: { action: 'onComplete' },
 }
 export const Primary = Template.bind({})

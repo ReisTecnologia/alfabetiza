@@ -13,10 +13,10 @@ const AudioButton = loadable(async () => {
   const LoadableAudioButton = (props) => <AudioButton {...props} />
   return LoadableAudioButton
 })
-const CompleteAudio = loadable(async () => {
-  const { CompleteAudio } = await import('../CompleteAudio')
-  const LoadableAudio = (props) => <CompleteAudio {...props} />
-  return LoadableAudio
+const SimpleAudio = loadable(async () => {
+  const { SimpleAudio } = await import('../SimpleAudio')
+  const LoadableSimpleAudio = (props) => <SimpleAudio {...props} />
+  return LoadableSimpleAudio
 })
 
 export const CheckFirstLetter = ({
@@ -119,7 +119,7 @@ export const CheckFirstLetter = ({
             onComplete={setListened}
           />
         )}
-        <CompleteAudio
+        <SimpleAudio
           src={conclusionAudio}
           startPlaying={end}
           onComplete={setAnswered}

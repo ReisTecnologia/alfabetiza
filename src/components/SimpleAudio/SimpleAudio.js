@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, { useRef, useEffect } from 'react'
 import { Wrapper } from './Wrapper'
 
-export const CompleteAudio = ({ src, startPlaying, onComplete }) => {
+export const SimpleAudio = ({ src, startPlaying, onComplete }) => {
   var audioElement = useRef(new Audio(src))
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export const CompleteAudio = ({ src, startPlaying, onComplete }) => {
   return <Wrapper />
 }
 
-CompleteAudio.propTypes = {
+SimpleAudio.propTypes = {
   src: PropTypes.string,
   startPlaying: PropTypes.bool,
   onComplete: PropTypes.func,
