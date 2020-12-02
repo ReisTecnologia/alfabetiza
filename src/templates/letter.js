@@ -35,13 +35,14 @@ export const query = graphql`
   query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       frontmatter {
-        letra
+        letter
         elements {
           letter
           texto
           text
           type
           urlAudio
+          urlAudios
           urlVideo
           words {
             word

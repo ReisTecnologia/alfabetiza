@@ -13,8 +13,8 @@ const AudioButton = loadable(async () => {
   return LoadableAudioButton
 })
 
-export const AudioElement = ({ src, actual }) => {
-  const { complete, doComplete } = useCompleteState()
+export const AudioElement = ({ src, actual, onComplete }) => {
+  const { complete, doComplete } = useCompleteState({ onComplete, actual })
 
   return (
     <Card complete={complete}>
@@ -34,4 +34,5 @@ export const AudioElement = ({ src, actual }) => {
 AudioElement.propTypes = {
   src: PropTypes.string,
   actual: PropTypes.bool,
+  onComplete: PropTypes.func,
 }

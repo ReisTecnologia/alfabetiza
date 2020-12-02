@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { InnerWrapper } from './InnerWrapper'
 
 export const Word = ({
+  color,
   word,
   answerStatus = 'unanswered',
   marginLeft,
@@ -22,6 +23,7 @@ export const Word = ({
       onClick={onClick}
       marginLeft={marginLeft}
       answerStatus={answerStatus}
+      color={color}
     >
       {wordWithoutPunctuation(word)}
       {punctuationToAdd && (
@@ -36,4 +38,5 @@ Word.propTypes = {
   marginLeft: PropTypes.string,
   answerStatus: PropTypes.oneOf(['unanswered', 'correct', 'wrong', 'clear']),
   onClick: PropTypes.func.isRequired,
+  color: PropTypes.string,
 }
