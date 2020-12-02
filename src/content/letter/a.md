@@ -1,5 +1,5 @@
 ---
-letra: 'A'
+letter: 'A'
 elements:
   - type: 'Audio'
     texto: 'Cada letra tem forma e tem som. A forma é a escrita da letra, o som é como falamos ela.'
@@ -83,5 +83,5 @@ elements:
     urlAudio: '31.m4a'
     letter: 'a'
     texto: 'Será que você já está sabendo identificar a letra A nas palavras? No texto abaixo clique em todas as palavras que começam com A (Se você acertar, ela vai ficar verde, senão, ela vai ficar vermelha)'
-    text: 'Antes de ontem vi uma arara azul voando no céu.'
+    text: "Arabela abria\n a janela\nCarolina erguia\na cortina\nE Maria olhava\ne sorria:\n\"Bom dia!\""
 ---

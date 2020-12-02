@@ -15,13 +15,12 @@ export const Layout = ({ children }) => {
           }
         }
       }
-    `,
+    `
   )
   return (
     <>
       <GlobalStyle />
       <MainWrapper>
-        titulo: {data.site.siteMetadata.title}
         <main>{children}</main>
       </MainWrapper>
     </>
