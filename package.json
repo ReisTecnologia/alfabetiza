@@ -52,7 +52,7 @@
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "storybook": "start-storybook -p 6006 --no-dll",
     "build-storybook": "build-storybook --no-dll",
-    "chromatic": "npx chromatic --project-token wssvncinsla"
+    "chromatic": "chromatic --project-token wssvncinsla --exit-zero-on-changes"
   },
   "repository": {
     "type": "git",
