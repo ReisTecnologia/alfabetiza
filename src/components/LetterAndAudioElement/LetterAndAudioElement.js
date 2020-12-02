@@ -10,11 +10,12 @@ import { colors } from '../colors'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
-  return (props) => <AudioButton {...props} />
+  const LoadableAudioButton = (props) => <AudioButton {...props} />
+  return LoadableAudioButton
 })
 
-export const LetterAndAudioElement = ({ letter, src, actual }) => {
-  const { complete, doComplete } = useCompleteState()
+export const LetterAndAudioElement = ({ letter, src, actual, onComplete }) => {
+  const { complete, doComplete } = useCompleteState({ actual, onComplete })
 
   return (
     <Card first complete={complete}>
@@ -36,4 +37,5 @@ LetterAndAudioElement.propTypes = {
   letter: PropTypes.string,
   src: PropTypes.string,
   actual: PropTypes.bool,
+  onComplete: PropTypes.func,
 }

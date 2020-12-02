@@ -10,10 +10,10 @@ import { useCompleteState } from '../useCompleteState'
 import { Icon } from '../Icon'
 import { colors } from '../colors'
 
-export const VideoElement = ({ src, actual }) => {
+export const VideoElement = ({ src, actual, onComplete }) => {
   const videoElement = useRef(null)
   const [hasError, setHasError] = useState(false)
-  const { complete, doComplete } = useCompleteState()
+  const { complete, doComplete } = useCompleteState({ actual, onComplete })
   const { play, playing } = useMedia({
     mediaRef: videoElement,
     onComplete: doComplete,
@@ -56,4 +56,5 @@ export const VideoElement = ({ src, actual }) => {
 VideoElement.propTypes = {
   src: PropTypes.string.isRequired,
   actual: PropTypes.bool,
+  onComplete: PropTypes.func,
 }
