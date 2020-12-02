@@ -6,7 +6,7 @@ import { Container } from '../components/Container'
 const IndexPage = () => (
   <Layout>
     <Container>
-      <Link to="/letra/a">Letras</Link>
+      <Link to="/letter/a/">Letras</Link>
     </Container>
   </Layout>
 )
