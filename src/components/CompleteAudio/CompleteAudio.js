@@ -2,20 +2,22 @@ import PropTypes from 'prop-types'
 import React, { useRef, useEffect } from 'react'
 import { Wrapper } from './Wrapper'
 
-export const CompleteAudio = ({ src, whenToPlay }) => {
+export const CompleteAudio = ({ src, startPlaying, onComplete }) => {
   var audioElement = useRef(new Audio(src))
 
   useEffect(() => {
-    if (whenToPlay) {
+    if (startPlaying) {
       audioElement.current.play()
+      onComplete && onComplete()
     } else {
       return
     }
-  }, [whenToPlay])
+  }, [startPlaying])
   return <Wrapper />
 }
 
 CompleteAudio.propTypes = {
   src: PropTypes.string,
-  whenToPlay: PropTypes.bool,
+  startPlaying: PropTypes.bool,
+  onComplete: PropTypes.func,
 }

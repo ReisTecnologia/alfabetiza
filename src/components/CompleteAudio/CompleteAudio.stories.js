@@ -10,6 +10,6 @@ export default {
 }
 export const Primary = Template.bind({})
 Primary.args = {
-  whenToPlay: true,
+  startPlaying: true,
   src: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/a1.m4a',
 }

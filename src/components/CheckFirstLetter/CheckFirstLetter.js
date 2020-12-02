@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import loadable from '@loadable/component'
 import { Wrapper } from './Wrapper'
 import { YesOrNo } from '../YesOrNo'
-import { CompleteAudio } from '../CompleteAudio'
 import { Card } from '../Card'
 import { Icon } from '../Icon'
 import { colors } from '../colors'
@@ -13,6 +12,11 @@ const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
   const LoadableAudioButton = (props) => <AudioButton {...props} />
   return LoadableAudioButton
+})
+const CompleteAudio = loadable(async () => {
+  const { CompleteAudio } = await import('../CompleteAudio')
+  const LoadableAudio = (props) => <CompleteAudio {...props} />
+  return LoadableAudio
 })
 
 export const CheckFirstLetter = ({
@@ -81,10 +85,8 @@ export const CheckFirstLetter = ({
       })),
     [setState]
   )
-
   return (
     <Card complete={complete}>
-      <CompleteAudio src={conclusionAudio} whenToPlay={end} />
       <Wrapper>
         <AudioButton
           src={src}
@@ -117,6 +119,11 @@ export const CheckFirstLetter = ({
             onComplete={setListened}
           />
         )}
+        <CompleteAudio
+          src={conclusionAudio}
+          startPlaying={end}
+          onComplete={setAnswered}
+        />
       </Wrapper>
     </Card>
   )
