@@ -1,33 +1,36 @@
 import React from 'react'
 import { TextLetter } from './TextLetter'
+import { colors } from '../colors'
 
 const Template = (args) => <TextLetter {...args} />
 
 export default {
   title: 'Lib/TextLetter',
   component: TextLetter,
+  onComplete: { action: 'onComplete' },
+}
+
+const defaultArgs = {
+  text: `Avançar com paciência.
+Seguir a rota avaliando.`,
+  correctLetters: ['p', 'd'],
 }
 
 export const BasicText = Template.bind({})
 BasicText.args = {
-  text: `
-  Comprei um sítio no sertão de Piritiba. Com dos pés de guataíba, cajú, manga e cajá.
-
-Peguei na enxada como faz um catingueiro, fiz aceiro botei fogo, venha ver como é que tá.
-
-`,
+  ...defaultArgs,
 }
 
-export const CorrectLettersText = Template.bind({})
-CorrectLettersText.args = {
-  text: `Comprei um sítio no sertão de Piritiba. Com dos pés de guataíba, cajú, manga e cajá.
-Peguei na enxada como faz um catingueiro, fiz aceiro botei fogo, venha ver como é que tá.`,
-  correctLetters: ['c', 'f'],
+export const Color = Template.bind({})
+Color.args = {
+  ...defaultArgs,
+  color: colors.ready,
 }
 
-export const ClearLettersText = Template.bind({})
-ClearLettersText.args = {
-  text: `Comprei um sítio no sertão de Piritiba. Com dos pés de guataíba, cajú, manga e cajá.
-  Peguei na enxada como faz um catingueiro, fiz aceiro botei fogo, venha ver como é que tá.`,
-  correctLetters: ['a', 'g'],
+export const Special = Template.bind({})
+Special.args = {
+  ...defaultArgs,
+  text: `A E I O U, "áÁéÉíÍóÓúÚ", "àÀ" A!`,
+  correctLetters: ['a', 'e', 'i', 'o', 'u'],
+  color: colors.ready,
 }

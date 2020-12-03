@@ -27,7 +27,9 @@ export const Word = ({
     >
       {wordWithoutPunctuation(word)}
       {punctuationToAdd && (
-        <InnerWrapper word={word}>{punctuationToAdd}</InnerWrapper>
+        <InnerWrapper color={color} word={word}>
+          {punctuationToAdd}
+        </InnerWrapper>
       )}
     </Wrapper>
   )

@@ -2,12 +2,12 @@ import React from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { Letter } from './Letter/Letter'
+import { colors } from '../../../colors'
 
 const answerColors = {
-  unanswered: '#333',
-  wrong: '#b33',
-  correct: '#0c6e0c',
-  clear: '#5ed65e',
+  wrong: colors.textWrong,
+  correct: colors.textCorrect,
+  clear: colors.textClear,
 }
 
 const calculateAnswerStatus = (
@@ -34,6 +34,7 @@ export const Word = ({
   correctLetters = [],
   wrongLetters = [],
   clearStatus,
+  color,
 }) => {
   return (
     <Wrapper marginLeft={marginLeft}>
@@ -51,7 +52,7 @@ export const Word = ({
             key={letterIndex}
             letter={letter}
             onClick={(event) => onLetterClick(event, letterIndex)}
-            color={answerColors[answerStatus]}
+            color={answerColors[answerStatus] || color}
           />
         )
       })}
@@ -60,6 +61,7 @@ export const Word = ({
 }
 
 Word.propTypes = {
+  color: PropTypes.string,
   word: PropTypes.arrayOf(PropTypes.string).isRequired,
   marginLeft: PropTypes.string,
   onLetterClick: PropTypes.func.isRequired,

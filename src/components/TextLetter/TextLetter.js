@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Wrapper } from './Wrapper'
 import PropTypes from 'prop-types'
 import { Paragraph } from './Paragraph'
-
 import {
   getWordLetterIndexes,
   getParagraphWordsIndexes,
@@ -39,7 +38,12 @@ const calculateNumCorrectLetters = (paragraphWordLetters, correctLetters) => {
     .filter((letters) => correctLetters.includes(letters)).length
 }
 
-export const TextLetter = ({ text, correctLetters = [] }) => {
+export const TextLetter = ({
+  onComplete,
+  text,
+  correctLetters = [],
+  color,
+}) => {
   const paragraphWordLetters = splitIntoParagraphWordArrays(text)
   const [correctClickedLetters, setCorrectClickedLetters] = useState([])
   const [wrongClickedLetters, setWrongClickedLetters] = useState([])
@@ -54,6 +58,13 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
   const noWrongLettersAreClicked = wrongClickedLetters.length === 0
 
   const clearStatus = allCorrectLettersAreClicked && noWrongLettersAreClicked
+
+  useEffect(() => {
+    if (clearStatus) {
+      console.log('clear... ', clearStatus, onComplete)
+      onComplete && onComplete()
+    }
+  }, [onComplete, clearStatus])
 
   const toggleLetter = (_, { paragraphIndex, wordIndex, letterIndex }) => {
     const clickedLetterAddress = { paragraphIndex, wordIndex, letterIndex }
@@ -108,6 +119,7 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
 
         return (
           <Paragraph
+            color={color}
             key={paragraphIndex}
             words={singleParagraphWords}
             onLetterClick={onLetterClick}
@@ -122,6 +134,8 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
 }
 
 TextLetter.propTypes = {
+  onComplete: PropTypes.func,
   text: PropTypes.string.isRequired,
+  color: PropTypes.string,
   correctLetters: PropTypes.arrayOf(PropTypes.string),
 }

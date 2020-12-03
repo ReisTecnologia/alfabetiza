@@ -23,7 +23,7 @@ BasicElements.args = {
       letter: 'a',
       texto: 't6',
       text: 'Letra A',
-      type: 'StartsWithLetterTextTask',
+      type: 'ClickWordStartingWithALetterInTheTextTask',
       urlAudio: 'a1.m4a',
     },
     {
@@ -68,5 +68,11 @@ BasicElements.args = {
         },
       ],
     },
+    // ,
+    // {
+    //   texto: 'ClickWordStartingWithALetterInTheTextTask',
+    //   type: 'ClickWordStartingWithALetterInTheTextTask',
+    //   urlAudio: 'a1.m4a',
+    // },
   ],
 }

@@ -9,19 +9,20 @@ export default {
   argTypes: { onComplete: { action: 'onComplete' } },
 }
 
-export const BasicClickLetterInTheTextTaskElement = Template.bind({})
-BasicClickLetterInTheTextTaskElement.args = {
+const defaultProps = {
   urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/a1.m4a',
-  correctLetters: ['a'],
+  correctLetters: ['d'],
   text:
     'Arabela abria\n a janela.\nCarolina erguia\na cortina.\nE Maria olhava\ne sorria:\n"Bom dia!"',
 }
 
+export const BasicClickLetterInTheTextTaskElement = Template.bind({})
+BasicClickLetterInTheTextTaskElement.args = {
+  ...defaultProps,
+}
+
 export const Actual = Template.bind({})
 Actual.args = {
+  ...defaultProps,
   actual: true,
-  urlAudio: 'https://alfabetiza.s3-sa-east-1.amazonaws.com/a1.m4a',
-  correctLetters: ['a'],
-  text:
-    'Arabela abria\n a janela.\nCarolina erguia\na cortina.\nE Maria olhava\ne sorria:\n"Bom dia!"',
 }

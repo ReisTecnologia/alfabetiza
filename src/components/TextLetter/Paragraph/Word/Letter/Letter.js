@@ -17,7 +17,7 @@ export const Letter = ({ letter, color, onClick }) => {
     <Wrapper onClick={onClick} color={color}>
       {onlyLetter.toUpperCase()}
       {onlyPunctuation && (
-        <InnerWrapper punctuation={onlyPunctuation}>
+        <InnerWrapper color={color} punctuation={onlyPunctuation}>
           {onlyPunctuation}
         </InnerWrapper>
       )}
