@@ -4,12 +4,14 @@ import PropTypes from 'prop-types'
 import { Word } from './Word'
 
 export const Paragraph = ({
+  color,
   words,
   onLetterClick,
   correctLetters = [],
   wrongLetters = [],
   clearStatus = false,
 }) => {
+  console.log('Paragraph::color', color)
   return (
     <Wrapper>
       {words.map((word, wordIndex) => {
@@ -23,6 +25,7 @@ export const Paragraph = ({
         return (
           <Word
             key={wordIndex}
+            color={color}
             word={word}
             marginLeft={wordIndex === 0 ? '2rem' : null}
             onLetterClick={(event, letterIndex) =>
@@ -39,6 +42,7 @@ export const Paragraph = ({
 }
 
 Paragraph.propTypes = {
+  color: PropTypes.string,
   words: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
   correctLetters: PropTypes.array.isRequired,
   wrongLetters: PropTypes.array.isRequired,

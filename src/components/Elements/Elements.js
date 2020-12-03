@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { LetterAndAudioElement } from '../LetterAndAudioElement'
 
@@ -7,7 +7,7 @@ import { VideoElement } from '../VideoElement'
 import { CheckFirstLetter } from '../CheckFirstLetter'
 import { Text } from './Text'
 import { AudioElement } from '../AudioElement'
-import { StartsWithLetterTextTaskElement } from '../StartsWithLetterTextTaskElement'
+import { ClickWordStartingWithALetterInTheTextTaskElement } from '../ClickWordStartingWithALetterInTheTextTaskElement'
 import { ClickLetterInTheTextTaskElement } from '../ClickLetterInTheTextTaskElement'
 
 const SHOW_TEXTOS = false
@@ -94,9 +94,9 @@ export const Elements = ({ elements }) => {
             />
           )
           break
-        case 'StartsWithLetterTextTask':
+        case 'ClickWordStartingWithALetterInTheTextTask':
           element = (
-            <StartsWithLetterTextTaskElement
+            <ClickWordStartingWithALetterInTheTextTaskElement
               onComplete={onComplete}
               actual={actual}
               key={index}

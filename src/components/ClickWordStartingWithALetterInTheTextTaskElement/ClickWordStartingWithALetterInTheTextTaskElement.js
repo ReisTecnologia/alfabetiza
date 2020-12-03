@@ -14,7 +14,7 @@ const AudioButton = loadable(async () => {
   return LoadableAudioButton
 })
 
-export const StartsWithLetterTextTaskElement = ({
+export const ClickWordStartingWithALetterInTheTextTaskElement = ({
   urlAudio,
   text,
   letter,
@@ -23,6 +23,7 @@ export const StartsWithLetterTextTaskElement = ({
 }) => {
   const { complete, doComplete } = useCompleteState({ actual, onComplete })
   const [audioIsListened, setAudioIsListened] = useState(false)
+  console.log('audioIsListened', audioIsListened)
   const correctWords = text
     .split('\n')
     .map((line) => line.split(' '))
@@ -41,7 +42,7 @@ export const StartsWithLetterTextTaskElement = ({
       <ContentWrapper>
         <ItemWrapper>
           <AudioButton
-            color={!audioIsListened && actual ? colors.actual : null}
+            color={!audioIsListened && actual ? colors.actual : colors.ready}
             onComplete={setListened}
             src={urlAudio}
           />
@@ -59,9 +60,10 @@ export const StartsWithLetterTextTaskElement = ({
   )
 }
 
-StartsWithLetterTextTaskElement.propTypes = {
+ClickWordStartingWithALetterInTheTextTaskElement.propTypes = {
   urlAudio: PropTypes.string,
   text: PropTypes.string,
+  color: PropTypes.string,
   letter: PropTypes.string,
   actual: PropTypes.bool,
   onComplete: PropTypes.func,
