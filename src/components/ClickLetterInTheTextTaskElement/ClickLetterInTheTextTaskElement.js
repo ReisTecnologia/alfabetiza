@@ -6,7 +6,7 @@ import { ContentWrapper } from './ContentWrapper'
 import { ItemWrapper } from './ItemWrapper'
 import { useCompleteState } from '../useCompleteState'
 import { colors } from '../colors'
-import { TextWord } from '../TextWord'
+import { TextLetter } from '../TextLetter'
 
 const AudioButton = loadable(async () => {
   const { AudioButton } = await import('../AudioButton')
@@ -14,24 +14,15 @@ const AudioButton = loadable(async () => {
   return LoadableAudioButton
 })
 
-export const StartsWithLetterTextTaskElement = ({
+export const ClickLetterInTheTextTaskElement = ({
   urlAudio,
   text,
-  letter,
+  correctLetters,
   actual,
   onComplete,
 }) => {
   const { complete, doComplete } = useCompleteState({ actual, onComplete })
   const [audioIsListened, setAudioIsListened] = useState(false)
-  const correctWords = text
-    .split('\n')
-    .map((line) => line.split(' '))
-    .flat()
-    .map((str) =>
-      str.endsWith('.') || str.endsWith(',') ? str.slice(0, -1) : str
-    )
-    .map((str) => str.toLowerCase())
-    .filter((str) => str.startsWith(letter))
 
   const setListened = useCallback(() => setAudioIsListened(true), [
     setAudioIsListened,
@@ -47,11 +38,11 @@ export const StartsWithLetterTextTaskElement = ({
           />
         </ItemWrapper>
         <ItemWrapper>
-          <TextWord
+          <TextLetter
             color={audioIsListened && actual ? colors.actual : colors.ready}
             text={text}
             onComplete={doComplete}
-            correctWords={correctWords}
+            correctLetters={correctLetters}
           />
         </ItemWrapper>
       </ContentWrapper>
@@ -59,10 +50,10 @@ export const StartsWithLetterTextTaskElement = ({
   )
 }
 
-StartsWithLetterTextTaskElement.propTypes = {
+ClickLetterInTheTextTaskElement.propTypes = {
   urlAudio: PropTypes.string,
   text: PropTypes.string,
-  letter: PropTypes.string,
+  correctLetters: PropTypes.arrayOf(PropTypes.string),
   actual: PropTypes.bool,
   onComplete: PropTypes.func,
 }

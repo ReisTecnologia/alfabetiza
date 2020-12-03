@@ -13,6 +13,13 @@ export const BasicElements = Template.bind({})
 BasicElements.args = {
   elements: [
     {
+      correctLetters: ['a', 'r'],
+      texto: 'StartsWithLetterTextTask',
+      text: 'Letra A',
+      type: 'ClickLetterInTheTextTask',
+      urlAudio: 'a1.m4a',
+    },
+    {
       letter: 'a',
       texto: 't6',
       text: 'Letra A',

@@ -79,9 +79,9 @@ elements:
   - type: 'Audio'
     texto: 'Para você aprender é importante exercitar. Escreva no seu cadernoa a letra A pelo menos 7 vezes.'
     urlAudio: '30.m4a'
-  - type: 'StartsWithLetterTextTask'
+  - type: 'ClickLetterInTheTextTask'
     urlAudio: '31.m4a'
-    letter: 'a'
+    correctLetters: ['a']
     texto: 'Será que você já está sabendo identificar a letra A nas palavras? No texto abaixo clique em todas as palavras que começam com A (Se você acertar, ela vai ficar verde, senão, ela vai ficar vermelha)'
-    text: "Arabela abria\n a janela\nCarolina erguia\na cortina\nE Maria olhava\ne sorria:\n\"Bom dia!\""
+    text: "Arabela abria\n a janela.\nCarolina erguia\na cortina.\nE Maria olhava\ne sorria:\n\"Bom dia!\""
 ---
