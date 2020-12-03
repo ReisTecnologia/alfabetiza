@@ -8,6 +8,7 @@ import { CheckFirstLetter } from '../CheckFirstLetter'
 import { Text } from './Text'
 import { AudioElement } from '../AudioElement'
 import { StartsWithLetterTextTaskElement } from '../StartsWithLetterTextTaskElement'
+import { ClickLetterInTheTextTaskElement } from '../ClickLetterInTheTextTaskElement'
 
 const SHOW_TEXTOS = false
 
@@ -27,7 +28,17 @@ export const Elements = ({ elements }) => {
 
   return elements.map(
     (
-      { type, letter, urlAudio, urlAudios, urlVideo, texto, words, text },
+      {
+        type,
+        correctLetters,
+        letter,
+        urlAudio,
+        urlAudios,
+        urlVideo,
+        texto,
+        words,
+        text,
+      },
       index
     ) => {
       const fullUrlAudio = urlAudios
@@ -95,6 +106,18 @@ export const Elements = ({ elements }) => {
             />
           )
           break
+        case 'ClickLetterInTheTextTask':
+          element = (
+            <ClickLetterInTheTextTaskElement
+              onComplete={onComplete}
+              actual={actual}
+              key={index}
+              urlAudio={fullUrlAudio}
+              correctLetters={correctLetters}
+              text={text}
+            />
+          )
+          break
         default:
           throw new Error(`Unknown element type: ${type}`)
       }
@@ -120,6 +143,7 @@ Elements.propTypes = {
     PropTypes.shape({
       type: PropTypes.string,
       letter: PropTypes.string,
+      correctLetters: PropTypes.arrayOf(PropTypes.string),
       urlAudio: PropTypes.string,
       urlAudios: PropTypes.arrayOf(PropTypes.string),
       urlVideo: PropTypes.string,

@@ -38,6 +38,7 @@ export const query = graphql`
         letter
         elements {
           letter
+          correctLetters
           texto
           text
           type

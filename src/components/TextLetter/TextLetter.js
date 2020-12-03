@@ -12,6 +12,12 @@ import { addOrRemoveFromArray } from './addOrRemoveFromArray'
 const removeAccents = (letterWithAccents) => {
   return letterWithAccents.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
+const removeDotsAndCommas = (letterWithoutAccents) =>
+  letterWithoutAccents === ','
+    ? null
+    : letterWithoutAccents === '.'
+    ? null
+    : letterWithoutAccents
 
 const notEmpty = (text) => text.trim(text) !== ''
 
@@ -54,12 +60,16 @@ export const TextLetter = ({ text, correctLetters = [] }) => {
     const letterWithAccents =
       paragraphWordLetters[paragraphIndex][wordIndex][letterIndex]
 
-    let letter = removeAccents(letterWithAccents)
+    const letterWithoutAccents = removeAccents(letterWithAccents).toLowerCase()
+
+    const letter = removeDotsAndCommas(letterWithoutAccents)
 
     const isCorrect = !!correctLetters.find(
-      (correctLetter) => correctLetter.toLowerCase() === letter.toLowerCase()
+      (correctLetter) => correctLetter.toLowerCase() === letter
     )
-    if (isCorrect) {
+    if (letter === null) {
+      return
+    } else if (isCorrect) {
       addOrRemoveFromArray(
         correctClickedLetters,
         clickedLetterAddress,
