@@ -17,7 +17,7 @@ export const Icon = ({
   shape = 'Play',
   color = '#000',
   onClick,
-  size = 35,
+  size = 30,
 }) => {
   if (!components[shape]) {
     throw new Error(`component ${shape} is not supported`)
