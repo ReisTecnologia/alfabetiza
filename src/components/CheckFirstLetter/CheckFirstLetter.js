@@ -13,8 +13,19 @@ const AudioButton = loadable(async () => {
   const LoadableAudioButton = (props) => <AudioButton {...props} />
   return LoadableAudioButton
 })
+const SimpleAudio = loadable(async () => {
+  const { SimpleAudio } = await import('../SimpleAudio')
+  const LoadableSimpleAudio = (props) => <SimpleAudio {...props} />
+  return LoadableSimpleAudio
+})
 
-export const CheckFirstLetter = ({ src, words, actual, onComplete }) => {
+export const CheckFirstLetter = ({
+  src,
+  conclusionAudio,
+  words,
+  actual,
+  onComplete,
+}) => {
   const { complete, doComplete } = useCompleteState({ actual, onComplete })
   const [state, setState] = useState({
     instructionsCompleted: false,
@@ -74,7 +85,6 @@ export const CheckFirstLetter = ({ src, words, actual, onComplete }) => {
       })),
     [setState]
   )
-
   return (
     <Card complete={complete}>
       <Wrapper>
@@ -109,6 +119,11 @@ export const CheckFirstLetter = ({ src, words, actual, onComplete }) => {
             onComplete={setListened}
           />
         )}
+        <SimpleAudio
+          src={conclusionAudio}
+          startPlaying={end}
+          onComplete={setAnswered}
+        />
       </Wrapper>
     </Card>
   )
@@ -119,6 +134,7 @@ CheckFirstLetter.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.arrayOf(PropTypes.string.isRequired),
   ]),
+  conclusionAudio: PropTypes.string,
   actual: PropTypes.bool,
   words: PropTypes.array,
   onComplete: PropTypes.func,
