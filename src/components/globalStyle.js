@@ -14,7 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     touch-action: manipulation;
-    over-flow: hidden;
+    overflow: hidden;
   }
   body {
     margin: 0;
