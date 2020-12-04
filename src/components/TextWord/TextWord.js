@@ -11,6 +11,13 @@ const removePunctuation = (wordWithPunctuation) =>
     ? wordWithPunctuation.slice(0, -1)
     : wordWithPunctuation
 
+const removeQuotes = (wordWithQuotes) =>
+  wordWithQuotes.startsWith('"') && wordWithQuotes.endsWith('"')
+    ? wordWithQuotes.substring(1, wordWithQuotes.length - 1)
+    : wordWithQuotes.startsWith("'") && wordWithQuotes.endsWith("'")
+    ? wordWithQuotes.substring(1, wordWithQuotes.length - 1)
+    : wordWithQuotes
+
 const notEmpty = (text) => text.trim(text) !== ''
 
 const splitIntoParagraphWords = (text) =>
@@ -24,6 +31,13 @@ const calculateNumCorrectWords = (paragraphsWords, correctWords) =>
     .flat()
     .map((word) =>
       word.endsWith('.') || word.endsWith(',') ? word.slice(0, -1) : word
+    )
+    .map((word) =>
+      word.startsWith('"') && word.endsWith('"')
+        ? word.substring(1, word.length - 1)
+        : word.startsWith("'") && word.endsWith("'")
+        ? word.substring(1, word.length - 1)
+        : word
     )
     .map((word) => word.toLowerCase())
     .filter((word) => correctWords.includes(word)).length
@@ -53,8 +67,10 @@ export const TextWord = ({ text, correctWords = [], onComplete, color }) => {
 
   const toggleWord = (_, { paragraphIndex, wordIndex }) => {
     const clickedWordAddress = { paragraphIndex, wordIndex }
-    const wordWithPunctuation = paragraphsWords[paragraphIndex][wordIndex]
-    let word = removePunctuation(wordWithPunctuation)
+    const wordWithPunctuationAndQuotes =
+      paragraphsWords[paragraphIndex][wordIndex]
+    const wordWithQuotes = removePunctuation(wordWithPunctuationAndQuotes)
+    const word = removeQuotes(wordWithQuotes)
 
     const isCorrect = !!correctWords.find(
       (correctWord) => correctWord.toLowerCase() === word.toLowerCase()
