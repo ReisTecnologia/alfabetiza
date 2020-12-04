@@ -56,7 +56,6 @@ export const CheckFirstLetter = ({
         showYesOrNo: false,
         end: true,
       })
-      doComplete()
     } else {
       setState(({ actualWordIndex }) => ({
         ...state,
@@ -122,7 +121,7 @@ export const CheckFirstLetter = ({
         <SimpleAudio
           src={conclusionAudio}
           startPlaying={end}
-          onComplete={setAnswered}
+          onComplete={doComplete}
         />
       </Wrapper>
     </Card>
