@@ -82,7 +82,6 @@ export const TextLetter = ({
     const letterWithQuotes = removeDotsAndCommas(letterWithoutAccents)
 
     const letter = removeQuotes(letterWithQuotes)
-    console.log(letter)
 
     const isCorrect = !!correctLetters.find(
       (correctLetter) => correctLetter.toLowerCase() === letter
