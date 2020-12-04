@@ -27,9 +27,9 @@ Color.args = {
 }
 
 export const Special = Template.bind({})
-Color.args = {
-  ...defaultArgs,
+Special.args = {
   text: `A tropa ia "avançar" no bolo.
 De chocolate.`,
+  correctWords: ['avançar', 'chocolate'],
   color: colors.ready,
 }
