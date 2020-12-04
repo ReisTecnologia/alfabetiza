@@ -18,6 +18,13 @@ const removeDotsAndCommas = (letterWithoutAccents) =>
     ? null
     : letterWithoutAccents
 
+const removeQuotes = (letterWithQuotes) =>
+  letterWithQuotes === '"'
+    ? null
+    : letterWithQuotes === "'"
+    ? null
+    : letterWithQuotes
+
 const notEmpty = (text) => text.trim(text) !== ''
 
 const splitIntoParagraphWordArrays = (text) => {
@@ -73,7 +80,9 @@ export const TextLetter = ({
 
     const letterWithoutAccents = removeAccents(letterWithAccents).toLowerCase()
 
-    const letter = removeDotsAndCommas(letterWithoutAccents)
+    const letterWithQuotes = removeDotsAndCommas(letterWithoutAccents)
+
+    const letter = removeQuotes(letterWithQuotes)
 
     const isCorrect = !!correctLetters.find(
       (correctLetter) => correctLetter.toLowerCase() === letter
