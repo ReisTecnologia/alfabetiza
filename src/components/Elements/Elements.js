@@ -90,6 +90,7 @@ export const Elements = ({ elements }) => {
               actual={actual}
               key={index}
               src={fullUrlAudio}
+              conclusionAudio={fullUrlAudio[1]}
               words={addBucketPrefixToWords(words)}
             />
           )

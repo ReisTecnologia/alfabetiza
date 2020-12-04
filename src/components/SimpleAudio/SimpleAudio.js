@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types'
 import React, { useRef, useEffect } from 'react'
 import { Wrapper } from './Wrapper'
+import { useMedia } from '../useMedia'
 
 export const SimpleAudio = ({ src, startPlaying, onComplete }) => {
   var audioElement = useRef(new Audio(src))
 
+  const { play } = useMedia({
+    mediaRef: audioElement,
+    onComplete: onComplete,
+  })
+
   useEffect(() => {
     if (startPlaying) {
-      audioElement.current.play()
-      onComplete && onComplete()
+      play()
     } else {
       return
     }
-  }, [startPlaying])
+  }, [startPlaying, onComplete])
+
   return <Wrapper />
 }
 
