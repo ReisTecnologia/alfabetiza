@@ -4,22 +4,28 @@ import PropTypes from 'prop-types'
 import { InnerWrapper } from './InnerWrapper'
 
 export const Letter = ({ letter, color, onClick }) => {
-  const checkIfLetter = (letter) =>
-    letter === ',' ? '' : letter === '.' ? '' : letter
-
-  const checkIfPunctuation = (letter) =>
-    letter === ',' ? letter : letter === '.' ? letter : null
-
+  const checkIfLetter = (letter) => {
+    if (letter === ',') return ''
+    else if (letter === '.') return ''
+    else if (letter === '"') return ''
+    else if (letter === "'") return ''
+    else return letter
+  }
+  const checkIfQuotesOrPunctuation = (letter) => {
+    if (letter === ',') return letter
+    else if (letter === '.') return letter
+    else if (letter === '"') return letter
+    else if (letter === "'") return letter
+    else return null
+  }
   const onlyLetter = checkIfLetter(letter)
-  const onlyPunctuation = checkIfPunctuation(letter)
+  const punctuationAndQuotes = checkIfQuotesOrPunctuation(letter)
 
   return (
     <Wrapper onClick={onClick} color={color}>
       {onlyLetter.toUpperCase()}
-      {onlyPunctuation && (
-        <InnerWrapper color={color} punctuation={onlyPunctuation}>
-          {onlyPunctuation}
-        </InnerWrapper>
+      {punctuationAndQuotes && (
+        <InnerWrapper color={color}>{punctuationAndQuotes}</InnerWrapper>
       )}
     </Wrapper>
   )
