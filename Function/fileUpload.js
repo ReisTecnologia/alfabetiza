@@ -26,7 +26,8 @@ app.post(
     return s3.putObject(
       {
         Bucket: 'alfabetizaserver',
-        Key: req.body.filename,
+        // Key: req.body.filename,
+        Key: 'web app postman',
         Body: Buffer.from(req.file.buffer),
         ContentType: req.file.mimetype,
       },
