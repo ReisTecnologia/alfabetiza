@@ -624,7 +624,7 @@ export const GlobalStyle = createGlobalStyle`
   pre tt:after {
     content: "";
   }
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 481px) {
     html {
       font-size: 100%;
     }
