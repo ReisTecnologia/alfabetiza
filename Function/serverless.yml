@@ -23,6 +23,7 @@ functions:
           path: fileUpload
           method: post
           cors: true
+          async: true
 
 
 resources:
